@@ -3,6 +3,7 @@ function Site() {
         <div className="glass-card">
             <h1><strong>SISTEMA</strong></h1>
         </div>
+
     );
 }
 
