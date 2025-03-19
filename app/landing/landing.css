@@ -5,6 +5,14 @@
     padding: 0;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+}
+
 body{
     font-family: "Open Sans", serif;
     background: #1D2027;
@@ -40,6 +48,17 @@ header li:hover{
     color: #1B87EA;
 
 }
+
+header a{
+    color: #F6F7F6;
+}
+
+header a:hover{
+    transition: 0.3s;
+    color: #1B87EA;
+
+}
+
 
 .mainContent{
     margin: 14rem 0rem 0rem 3rem;
@@ -80,4 +99,34 @@ header li:hover{
     color: #1B87EA;
 }
 
+#saibaMais{
+    margin: 14rem 3rem 2rem 3rem;
+    font-size: 2rem;
+}
 
+.cards{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.card{
+    width: 450px;
+    background-color: #F6F7F6;
+    color: #1B87EA;
+    margin-top: 50px;
+   
+}
+
+.card .text{
+    padding: 1vh 3vh;
+}
+
+.mapContainer{
+    margin-top: 300px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
