@@ -1,0 +1,96 @@
+body{
+    background-color: rgb(23, 42, 83);
+}
+
+
+.card{
+
+    background-color: rgb(127, 139, 139);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:18px;
+    border: 2px solid black;
+    margin:100px 50px ;
+    width: 400px;
+    border-radius: 10px;
+    text-align: center;
+
+}
+
+.titulo{
+    font-size:20px;
+
+}
+
+.confirmacao{
+
+    background-color: rgb(223, 9, 9);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:18px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 0px;
+    
+    
+
+}
+
+
+.avaliacao{
+
+    background-color: rgb(255, 118, 27);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:18px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 0px;
+    
+
+}
+
+.retirada{
+
+    background-color: rgb(73, 255, 27);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:18px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 0px;
+    
+    
+
+}
+
+.andamento{
+
+    background-color: rgb(240, 219, 29);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:18px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 0px;
+    
+    
+
+}
+
+.tags{
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+    
+   
+   
+    
+
