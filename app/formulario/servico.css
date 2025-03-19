@@ -1,0 +1,46 @@
+
+body{
+    background-color: rgb(23, 42, 83);
+    box-shadow: 20px 20px 50px rgb(128, 128, 184);
+    
+}
+
+.teste{
+    color:rgb(12, 12, 12);
+    background-color: rgb(127, 139, 139);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size:30px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 10px rgb(196, 196, 219);
+    margin-block:1000px 5px 1000px auto;
+    padding: 100px ;
+    border-radius: 60px;
+
+
+}
+
+.OS{
+
+    color: rgb(14, 12, 12);
+    text-align: center;
+    background-color: rgb(119, 116, 119);
+    border: 1px solid black;
+    width:auto;
+    margin: auto;
+    font-size: 20px ;
+    box-shadow: 20px 10px 10px rgb(172, 172, 233);
+    border-radius: 20px;
+}
+
+input{
+
+    height: 60px;
+    width: 1000px;
+}
+
+button {
+
+    font-size: 20px;
+    margin-bottom: 30px;
+}
