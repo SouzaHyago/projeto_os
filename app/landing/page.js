@@ -1,10 +1,29 @@
 'use client'
 import { redirect } from "next/navigation"
 import "./landing.css"
+import LandingCard from "./components/LandingCard"
 
 
 
 export default function Landing(){
+
+
+    const supabaseUrl = 'https://mwlfldrcwfcofgjltpaw.supabase.co'
+	const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im13bGZsZHJjd2Zjb2Znamx0cGF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0OTE5NDMsImV4cCI6MjA1ODA2Nzk0M30.u2Ex73UhuEMb6nkblLV8gfl5nRKcDTqEsw19fcFN3zQ"
+	const supabase = createClient(supabaseUrl, supabaseKey)
+    let test = fetchData();
+
+    async function fetchData(){
+        const { data, error } = await supabase
+		.from('livros')
+		.select(`*`)
+
+	    return data
+    }
+
+
+    
+
     return(
         <div>
             <header>
@@ -15,7 +34,7 @@ export default function Landing(){
                 </ul>
             </header>
             <div className={"mainContent"}>
-                <h1 className={"slogan"}>O Slogan <br/> <span className={"destaque"}>Mais interessante</span> <br/> de todos</h1>
+                <h1 className={"slogan"}>O Slogan <br/> <span className={"destaque"}>{test[0].name}</span> <br/> de todos</h1>
                 <p className={"chamada"}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus ducimus accusantium totam nostrum saepe id, temporibus soluta ab optio accusamus tempore ratione et. In deserunt illo voluptatibus soluta totam enim! lorem</p>
 
                 <ul>
@@ -25,26 +44,22 @@ export default function Landing(){
             </div>
             <div id={"saibaMais"}>
                 <h1 className={"slogan"}>Por que escolher o <br/> <span className={"destaque"}>{"\"nome do software\""}?</span></h1>
-
                 <div className="cards">
-                    <div className="card">
-                        <img src="https://placehold.co/450x185" alt="" />
-                        <div className={"text"}>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, nihil autem quo provident quia placeat eius vero natus expedita consequatur nostrum sit molestiae aspernatur rem minus? Ullam deleniti tempora cupiditate.</p>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <img src="https://placehold.co/450x185" alt="" />
-                        <div className={"text"}>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, nihil autem quo provident quia placeat eius vero natus expedita consequatur nostrum sit molestiae aspernatur rem minus? Ullam deleniti tempora cupiditate.</p>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <img src="https://placehold.co/450x185" alt="" />
-                        <div className={"text"}>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, nihil autem quo provident quia placeat eius vero natus expedita consequatur nostrum sit molestiae aspernatur rem minus? Ullam deleniti tempora cupiditate.</p>
-                        </div>
-                    </div>
+                    <LandingCard
+                        text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga reiciendis modi accusantium, distinctio quidem illum, unde fugiat cum excepturi tenetur, nesciunt repellendus. Tempora cum doloribus ipsam iusto adipisci quas modi."
+                        imgLink = "https://placehold.co/450x185"
+                    
+                    />
+                    <LandingCard
+                        text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga reiciendis modi accusantium, distinctio quidem illum, unde fugiat cum excepturi tenetur, nesciunt repellendus. Tempora cum doloribus ipsam iusto adipisci quas modi."
+                        imgLink = "https://placehold.co/450x185"
+                    
+                    />
+                    <LandingCard
+                        text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga reiciendis modi accusantium, distinctio quidem illum, unde fugiat cum excepturi tenetur, nesciunt repellendus. Tempora cum doloribus ipsam iusto adipisci quas modi."
+                        imgLink = "https://placehold.co/450x185"
+                    
+                    />
                 </div>
             </div>
 
@@ -60,7 +75,16 @@ export default function Landing(){
                     referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
             </div>
-            
+            <footer>
+                <div>
+                    <ul>
+                        <li>Numero de telefone generico</li>
+                        <li>Rede social de escolha</li>
+                        <li>Mias informações caso nescessário</li>
+                        <li>Endereço novamente</li>
+                    </ul>
+                </div>
+            </footer>
         </div>
     )
 }
