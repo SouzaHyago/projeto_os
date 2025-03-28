@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+}
+
+body{
+    font-family: "Open Sans", serif;
+    background: #1D2027;
+    color: #F6F7F6;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: 2.5rem 2rem;
+    
+}
+
+header ul{
+    display: flex;
+    justify-items: end;
+    list-style-type: none;
+}
+
+header li{
+    margin-right: 2.5rem;
+    cursor: pointer;
+    height: 2rem;
+    border-radius: 10px;
+    padding: 0.75rem 0.65rem 0.7rem 0.50rem;
+
+}
+
+header li:hover{
+    background-color: #2c313d;
+    transition: 0.3s;
+    border: solid 1px white;
+    color: #1B87EA;
+
+}
+
+header a{
+    color: #F6F7F6;
+}
+
+header a:hover{
+    transition: 0.3s;
+    color: #1B87EA;
+
+}
+
+
+.mainContent{
+    margin: 14rem 0rem 0rem 3rem;
+    font-size: 2rem;
+}
+
+.mainContent ul{
+    list-style: none;
+    display: flex;
+    margin-top: 4rem;
+    margin-right: 4rem;
+}
+
+.mainContent li{
+    padding-right: 2rem;
+}
+
+.mainContent a{
+    border-radius: 5px;
+    padding: 0.65rem 0.55rem 0.6rem 0.40rem;
+    cursor: pointer;
+    background: #1B87EA;
+    color: #1D2027;
+    font-size: 1rem;
+    border: none;
+    margin: 7rem 1.5rem 0rem 0rem;
+    box-shadow: 1px 0.75px 5px #1B87EA;
+    text-decoration: none;
+}
+
+.mainContent a:hover{
+   transition: 0.3s;
+   background-color: #115ca1;
+   color: #F6F7F6;
+}
+
+.destaque{
+    color: #1B87EA;
+}
+
+#saibaMais{
+    margin: 14rem 3rem 2rem 3rem;
+    font-size: 2rem;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.card{
+    width: 450px;
+    background-color: #F6F7F6;
+    color: #1B87EA;
+    margin-top: 50px;
+   
+}
+
+.card .text{
+    padding: 1vh 3vh;
+}
+
+.mapContainer{
+    margin-top: 300px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
