@@ -10,18 +10,6 @@ export async function GET() {
     })
 }
 
-export async function POST(request) {
-    const body = await request.json()
-    const { nome, descricao, valor, id_categoria } = body
-
-    const query = `
-        INSERT INTO itens (nome, descricao, valor, id_categoria)
-        VALUES (?, ?, ?, ?);
-    `
-    await conexao.execute(query, [nome, descricao, valor, id_categoria])
-
-    return new Response(JSON.stringify({ msg: "Item criado com sucesso!" }), { status: 201 })
-}
 export async function POST( request ){
 
     const body = await request.json()
@@ -29,7 +17,7 @@ export async function POST( request ){
 
     const [results] = await conexao.execute(
         query,
-        [body.nome, body.email, body.senha, body.cpf, body.telefone]
+        [body.id_categoria, body.nome, body.descricao, body.valor]
     )
 
     return new Response( JSON.stringify(results.insertId) )
