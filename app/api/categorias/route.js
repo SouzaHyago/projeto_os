@@ -9,10 +9,9 @@ export async function GET() {
 
 export async function POST(request) {
     const body = await request.json()
-    const { nome } = body
 
     const query = `INSERT INTO categorias (nome) VALUES (?);`
-    await conexao.execute(query, [nome])
+    await conexao.execute(query, [body.nome])
 
     return new Response(JSON.stringify({ msg: "Categoria criada com sucesso!" }), { status: 201 })
 }
