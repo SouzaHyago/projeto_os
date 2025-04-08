@@ -8,6 +8,7 @@
 }
 
 body {
+    margin: 1%;
     background: #B3D0B3;
     color: #FFF;
     display: flex;
@@ -19,16 +20,16 @@ body {
 .cadastro {
     background: #89B789;
     width: 80%;
-    max-width: 500px;
-    padding: 4%;
+    max-width: 550px;
+    padding: 3%;
     border-radius: 60px;
     box-shadow: 20px 20px 10px #444;
 }
 
 .cadastro h1 {
     text-align: center;
-    margin-top: 5%;
-    margin-bottom: 15%;
+    margin-top: 2%;
+    margin-bottom: 10%;
     color: #FFF;
     font-size: 40px;
     font-weight: 600;
@@ -36,9 +37,9 @@ body {
 
 .cadastro input {
     width: 100%;
-    padding: 5%;
+    padding: 4%;
     margin-top: 1%;
-    margin-bottom: 10%;
+    margin-bottom: 8%;
     border: none;
     border-radius: 5px;
     background: #5F805F;
@@ -57,7 +58,7 @@ body {
     background: #5F805F;
     color: #FFF;
     margin-top: 5%;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
 
     cursor: pointer;
     transition: background-color 0.3s ease;

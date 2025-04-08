@@ -7,36 +7,12 @@ import "./cadastro_produtos.css"
 
 function CadastroProdutos() {
 
-    const [ nomeProduto, alteraNomeProduto ] = useState("")
-    const [ imagem, alteraImagem ] = useState("")
-    const [ descricao, alteraDescricao ] = useState("")
-    const [ valor, alteraValor ] = useState("")
-    
-    function cadastroProdutos(e){
-        e.preventDefault()
-
-        const produtoExistente = JSON.parse(localStorage.getItem(nomeProduto))
-
-        if (produtoExistente) {
-            toast.error("Este produto já está cadastrado.")
-            return
-        }else{
-            localStorage.setItem("nomeProduto", nomeProduto)
-            localStorage.setItem("imagem", imagem)
-            localStorage.setItem("descricao", descricao)
-            localStorage.setItem("preco", preco)
-    
-            toast.success("Produto cadastrado com sucesso!")
-        }
-
-    }
-
     return (  
         <div className="cadastro_produtos">
 
             <h1>Cadastro de Produtos</h1>
 
-            <form onSubmit={ (e)=> cadastroProdutos(e) }>
+            <form>
 
 
                 <label>Nome do produto <br/>
