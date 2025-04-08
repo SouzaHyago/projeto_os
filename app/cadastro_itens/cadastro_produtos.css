@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", serif;
+}
+
+body {
+    background: #B3D0B3;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.cadastro_produtos {
+    background: #89B789;
+    width: 80%;
+    max-width: 550px;
+    padding: 4%;
+    border-radius: 60px;
+    box-shadow: 20px 20px 10px #444;
+}
+
+.cadastro_produtos h1 {
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 10%;
+    color: #FFF;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.cadastro_produtos input {
+    width: 100%;
+    padding: 5%;
+    margin-top: 1%;
+    margin-bottom: 8%;
+    border: none;
+    border-radius: 5px;
+    background: #5F805F;
+    color: #FFF;
+}
+
+.cadastro_produtos input::placeholder {
+    color: #D3D3D3;
+}
+
+.cadastro_produtos button {
+    width: 100%;
+    padding: 5%;
+    border: none;
+    border-radius: 5px;
+    background: #5F805F;
+    color: #FFF;
+    margin-top: 4%;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cadastro_produtos button:hover {
+    background-color: #a6cfa6; 
+}
