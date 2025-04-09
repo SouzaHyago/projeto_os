@@ -1,6 +1,8 @@
 'use client'
 import { redirect } from "next/navigation"
 import "./landing.css"
+import axios from "axios"
+import { useEffect } from "react"
 
 
 
