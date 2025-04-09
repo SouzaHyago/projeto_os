@@ -1,10 +1,32 @@
 'use client'
 import { redirect } from "next/navigation"
 import "./landing.css"
+import axios from "axios"
+import { useEffect } from "react"
 
 
 
 export default function Landing(){
+
+
+    async function sla() {
+
+
+        const response = await axios.get("http://localhost:3000/api/ordem",{
+                params : {
+                    idItem: 3,
+                    idUsuario:2,
+                    idCompra:1
+                }   
+            }
+        );
+        console.log(response);
+    }
+
+    useEffect(()=>{
+        sla()
+    },[]);
+
     return(
         <div>
             <header>
