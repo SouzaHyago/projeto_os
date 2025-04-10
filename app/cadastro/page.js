@@ -23,15 +23,24 @@ function Cadastro() {
             telefone: telefone,
             senha: senha
         }
+    
+        try{
 
-        const response = await axios.post("http://localhost:3000/api/usuarios", obj)
-        console.log(response)
+            const response = await axios.post("http://localhost:3000/api/usuarios", obj)
 
-        alteraNome("")
-        alteraEmail("")
-        alteraCpf("")
-        alteraTelefone("")
-        alteraSenha("")
+            alteraNome("")
+            alteraEmail("")
+            alteraCpf("")
+            alteraTelefone("")
+            alteraSenha("")
+
+
+        }catch(e){
+            
+            toast.error("Email ou CPF já existentes...")
+            
+        }
+        
 
     }
 
@@ -43,23 +52,23 @@ function Cadastro() {
             <form onSubmit={(e) => { e.preventDefault(); cadastro(); }}>
 
                 <label>Nome <br/>
-                <input required placeholder="Digite seu nome" onChange={ (e)=> alteraNome(e.target.value) } />
+                <input required placeholder="Digite seu nome" onChange={ (e)=> alteraNome(e.target.value) } value={nome} />
                 </label> <br/>
         
                 <label>Email <br/>
-                <input required placeholder="Digite seu email" onChange={ (e)=> alteraEmail(e.target.value) } />
+                <input required placeholder="Digite seu email" onChange={ (e)=> alteraEmail(e.target.value) } value={email} />
                 </label> <br/>
 
                 <label>CPF<br/>
-                <input required placeholder="Digite seu cpf" onChange={ (e)=> alteraCpf(e.target.value) } />
+                <input required placeholder="Digite seu cpf" onChange={ (e)=> alteraCpf(e.target.value) } value={cpf} />
                 </label> <br/>
 
                 <label>Telefone/Celular<br/>
-                <input required placeholder="Digite seu telefone" onChange={ (e)=> alteraTelefone(e.target.value) } />
+                <input required placeholder="Digite seu telefone" onChange={ (e)=> alteraTelefone(e.target.value) } value={telefone} />
                 </label> <br/>
         
                 <label>Senha <br/>
-                <input type="password" required placeholder="Digite sua senha" onChange={ (e)=> alteraSenha(e.target.value) } />
+                <input type="password" required placeholder="Digite sua senha" onChange={ (e)=> alteraSenha(e.target.value) } value={senha} />
                 </label>
         
                 <br/>

@@ -20,14 +20,14 @@ body {
     background: #89B789;
     width: 80%;
     max-width: 550px;
-    padding: 4%;
+    padding: 3.5%;
     border-radius: 60px;
     box-shadow: 20px 20px 10px #444;
 }
 
 .cadastro_produtos h1 {
     text-align: center;
-    margin-top: 4%;
+    margin-top: 2%;
     margin-bottom: 10%;
     color: #FFF;
     font-size: 40px;
