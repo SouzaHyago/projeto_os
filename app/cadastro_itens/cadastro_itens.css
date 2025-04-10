@@ -49,6 +49,19 @@ body {
     color: #D3D3D3;
 }
 
+select {
+    width: 100%;
+    padding: 4.6%;
+    border-radius: 5px;
+    background-color:#5F805F;
+    color: #D3D3D3;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 8%;
+    margin-top: 1%;
+
+    cursor: pointer;
+}
+
 .cadastro_produtos button {
     width: 100%;
     padding: 5%;

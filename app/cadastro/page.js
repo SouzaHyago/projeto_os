@@ -27,12 +27,15 @@ function Cadastro() {
         try{
 
             const response = await axios.post("http://localhost:3000/api/usuarios", obj)
+            console.log(response)
 
             alteraNome("")
             alteraEmail("")
             alteraCpf("")
             alteraTelefone("")
             alteraSenha("")
+
+            window.location.href = "/login";
 
 
         }catch(e){

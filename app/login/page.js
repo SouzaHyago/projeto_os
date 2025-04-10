@@ -1,23 +1,43 @@
 'use client'
 
-import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from "react"
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import axios from "axios"
 import "./login.css"
 
 function Login() {
 
-    const [ email, alteraEmail ] = useState("")
-    const [ senha, alteraSenha ] = useState("")
+    const [usuarios, alteraUsuarios] = useState([])
+    const [email, alteraEmail] = useState("")
+    const [senha, alteraSenha] = useState("")
 
-    function login(e){
+    useEffect(() => {
+        buscaUsuarios()
+    }, []);
+
+    async function buscaUsuarios() {
+        try {
+            const response = await axios.get("http://localhost:3000/api/usuarios")
+            alteraUsuarios(response.data)
+        } catch (error) {
+            toast.error("Erro ao buscar usuários.")
+        }
+    }
+
+    function login(e) {
         e.preventDefault();
 
-        let emailSalvo = localStorage.getItem("email")
-        let senhaSalva = localStorage.getItem("senha")
+        const usuarioEncontrado = usuarios.find(
+            (usuario) => usuario.email == email && usuario.senha == senha
+        );
 
-        if (email == emailSalvo && senha == senhaSalva) {
-            alert("Login realizado com sucesso!")
+        if (usuarioEncontrado) {
+            // Futuramente colocar um window.location.href para direcionar para o página inicial
+            toast.success("Login realizado com sucesso!")
+            alteraEmail("")
+            alteraSenha("")
+
         } else {
             toast.error("Usuário ou senha incorretos.")
         }
@@ -32,11 +52,11 @@ function Login() {
             <form onSubmit={ (e)=> login(e) }>
         
                 <label>Email <br/>
-                <input required placeholder="Digite seu email" onChange={ (e)=> alteraEmail(e.target.value) } />
+                <input required placeholder="Digite seu email" onChange={ (e)=> alteraEmail(e.target.value) } value={email} />
                 </label> <br/>
         
                 <label>Senha <br/>
-                <input type="password" required placeholder="Digite sua senha" onChange={ (e)=> alteraSenha(e.target.value) } /><br/>
+                <input type="password" required placeholder="Digite sua senha" onChange={ (e)=> alteraSenha(e.target.value) } value={senha} /><br/>
                 </label>
         
                 <button>Entrar</button><br/>
