@@ -32,7 +32,7 @@ export async function POST(request) {
 
 export async function GET(){
 
-    const query = `SELECT compras.id, usuarios.nome, compras.valor, compras.data, itens.nome, compras.quantidade
+    const query = `SELECT compras.id, usuarios.nome, compras.valor, compras.data, itens.nome AS item, compras.quantidade
                     FROM compras, itens, usuarios WHERE compras.status = 3 AND (compras.id_item = itens.id AND compras.id_usuario = usuarios.id);
     `
     const [results] = await conexao.execute(query)
