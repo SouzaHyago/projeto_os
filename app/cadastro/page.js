@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
@@ -13,6 +13,8 @@ function Cadastro() {
     const [ cpf, alteraCpf ] = useState([])
     const [ telefone, alteraTelefone ] = useState([])
     const [ senha, alteraSenha ] = useState([])
+    const [ adm, alteraAdm ] = useState(0)
+    const [admNovoUsuario, alteraAdmNovoUsuario] = useState("Não")
 
     async function cadastro(){
 
@@ -21,7 +23,8 @@ function Cadastro() {
             email: email,
             cpf: cpf,
             telefone: telefone,
-            senha: senha
+            senha: senha,
+            adm: admNovoUsuario == "Sim" ? 1 : 0
         }
     
         try{
@@ -35,7 +38,7 @@ function Cadastro() {
             alteraTelefone("")
             alteraSenha("")
 
-            window.location.href = "/login";
+            window.location.href = "/login"
 
 
         }catch(e){
@@ -46,6 +49,20 @@ function Cadastro() {
         
 
     }
+
+    async function verificarAdm(){
+        const response = await axios.get("http://localhost:3000/api/usuarios")
+        if (response.data && response.data.adm == 1) {
+            alteraAdm(1)
+        } else {
+            alteraAdm(0)
+        }
+    }
+
+
+    useEffect(() => {
+        verificarAdm()
+    }, [])
 
     return (  
         <div className="cadastro">
@@ -72,9 +89,17 @@ function Cadastro() {
         
                 <label>Senha <br/>
                 <input type="password" required placeholder="Digite sua senha" onChange={ (e)=> alteraSenha(e.target.value) } value={senha} />
-                </label>
+                </label><br/>
         
-                <br/>
+                {
+                    adm == 1 &&
+                        <label>Deseja cadastrar um administrador? <br/>
+                            <select onChange={(e) => alteraAdmNovoUsuario(e.target.value)} value={admNovoUsuario}>
+                                <option>Sim</option>
+                                <option>Não</option>
+                            </select>
+                        </label>
+                }
         
                 <button>Cadastrar</button>
 

@@ -26,11 +26,11 @@ function Login() {
     }
 
     function login(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         const usuarioEncontrado = usuarios.find(
             (usuario) => usuario.email == email && usuario.senha == senha
-        );
+        )
 
         if (usuarioEncontrado) {
             // Futuramente colocar um window.location.href para direcionar para o página inicial
