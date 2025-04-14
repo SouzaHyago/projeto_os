@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
@@ -13,6 +13,8 @@ function Cadastro() {
     const [ cpf, alteraCpf ] = useState([])
     const [ telefone, alteraTelefone ] = useState([])
     const [ senha, alteraSenha ] = useState([])
+    const [ adm, alteraAdm ] = useState(0)
+    const [admNovoUsuario, alteraAdmNovoUsuario] = useState("Não")
 
     async function cadastro(){
 
@@ -21,7 +23,8 @@ function Cadastro() {
             email: email,
             cpf: cpf,
             telefone: telefone,
-            senha: senha
+            senha: senha,
+            adm: admNovoUsuario == "Sim" ? 1 : 0
         }
     
         try{
@@ -35,7 +38,7 @@ function Cadastro() {
             alteraTelefone("")
             alteraSenha("")
 
-            window.location.href = "/login";
+            window.location.href = "/login"
 
 
         }catch(e){
@@ -46,6 +49,23 @@ function Cadastro() {
         
 
     }
+
+    async function verificarAdm(){
+
+        const usuario = JSON.parse(localStorage.getItem('usuario'))
+
+        if (usuario && usuario.adm == 1) {
+            alteraAdm(1)
+        } else {
+            alteraAdm(0)
+        }
+
+    }
+
+
+    useEffect(() => {
+        verificarAdm()
+    }, [])
 
     return (  
         <div className="cadastro">
@@ -72,9 +92,37 @@ function Cadastro() {
         
                 <label>Senha <br/>
                 <input type="password" required placeholder="Digite sua senha" onChange={ (e)=> alteraSenha(e.target.value) } value={senha} />
-                </label>
+                </label><br/>
         
-                <br/>
+                {
+                    adm == 1 &&
+                    <>
+                        <label>Deseja cadastrar um administrador?</label>
+                        <div className="adm-options">
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="adm" 
+                                    value="Sim" 
+                                    checked={admNovoUsuario === "Sim"}
+                                    onChange={(e)=> alteraAdmNovoUsuario(e.target.value)} 
+                                />
+                                Sim
+                            </label>
+            
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="adm" 
+                                    value="Não" 
+                                    checked={admNovoUsuario === "Não"}
+                                    onChange={(e)=> alteraAdmNovoUsuario(e.target.value)} 
+                                />
+                                Não
+                            </label>
+                        </div>
+                    </>
+                }
         
                 <button>Cadastrar</button>
 

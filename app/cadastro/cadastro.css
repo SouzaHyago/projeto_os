@@ -8,7 +8,7 @@
 }
 
 body {
-    margin: 1%;
+    margin: 4%;
     background: #B3D0B3;
     color: #FFF;
     display: flex;
@@ -76,4 +76,23 @@ p {
 
 a {
     color: #FFF;
+}
+
+.cadastro .adm-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.cadastro .adm-options label {
+    display: flex;
+    gap: 8px;
+    background: #5F805F;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #FFF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 100px;
 }

@@ -26,23 +26,32 @@ function Login() {
     }
 
     function login(e) {
-        e.preventDefault();
+        e.preventDefault()
 
         const usuarioEncontrado = usuarios.find(
             (usuario) => usuario.email == email && usuario.senha == senha
-        );
+        )
 
         if (usuarioEncontrado) {
+
+            localStorage.setItem('usuario', JSON.stringify({
+                email: usuarioEncontrado.email,
+                adm: usuarioEncontrado.adm
+            }))
+
             // Futuramente colocar um window.location.href para direcionar para o página inicial
             toast.success("Login realizado com sucesso!")
             alteraEmail("")
             alteraSenha("")
+
+
 
         } else {
             toast.error("Usuário ou senha incorretos.")
         }
 
     }
+
 
     return ( 
         <div className="login">
