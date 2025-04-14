@@ -1,8 +1,8 @@
 'use client'
 
 import axios from 'axios';
-import Image from 'next/image'
 import { useEffect } from 'react';
+import host from '../lib/host';
 
 
 export default function Ordem(){
@@ -10,7 +10,7 @@ export default function Ordem(){
 
     async function buscaDados() {
         
-        const response = await axios.get("http://localhost:3000/ordem",{
+        const response = await axios.get(host+"ordem",{
             params : {
                 idItem: 4,
                 idUsuario:1,
