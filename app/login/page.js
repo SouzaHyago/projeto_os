@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from "axios"
 import "./login.css"
+import host from "../lib/host"
 
 function Login() {
 
@@ -18,7 +19,7 @@ function Login() {
 
     async function buscaUsuarios() {
         try {
-            const response = await axios.get("http://localhost:3000/api/usuarios")
+            const response = await axios.get(host+"usuarios")
             alteraUsuarios(response.data)
         } catch (error) {
             toast.error("Erro ao buscar usuários.")

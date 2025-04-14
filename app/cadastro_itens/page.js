@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./cadastro_itens.css"
 import axios from "axios";
+import host from "../lib/host";
 
 function CadastroItens() {
 
@@ -23,7 +24,7 @@ function CadastroItens() {
         };
 
         try {
-            const response = await axios.post("http://localhost:3000/api/itens", obj)
+            const response = await axios.post(host+"itens", obj)
             console.log(response)
 
             alteraCategoria("")
@@ -37,7 +38,7 @@ function CadastroItens() {
     }
 
     async function buscaCategorias() {
-        const response = await axios.get("http://localhost:3000/api/categorias")
+        const response = await axios.get(host+"categorias")
         alteraCategorias(response.data)
     }
 

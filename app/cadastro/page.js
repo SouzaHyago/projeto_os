@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
 import "./cadastro.css"
+import host from "../lib/host"
 
 function Cadastro() {
 
@@ -29,7 +30,7 @@ function Cadastro() {
     
         try{
 
-            const response = await axios.post("http://localhost:3000/api/usuarios", obj)
+            const response = await axios.post(host+"usuarios", obj)
             console.log(response)
 
             alteraNome("")
