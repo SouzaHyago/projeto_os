@@ -51,12 +51,15 @@ function Cadastro() {
     }
 
     async function verificarAdm(){
-        const response = await axios.get("http://localhost:3000/api/usuarios")
-        if (response.data && response.data.adm == 1) {
+
+        const usuario = JSON.parse(localStorage.getItem('usuario'))
+
+        if (usuario && usuario.adm == 1) {
             alteraAdm(1)
         } else {
             alteraAdm(0)
         }
+
     }
 
 
@@ -93,12 +96,32 @@ function Cadastro() {
         
                 {
                     adm == 1 &&
-                        <label>Deseja cadastrar um administrador? <br/>
-                            <select onChange={(e) => alteraAdmNovoUsuario(e.target.value)} value={admNovoUsuario}>
-                                <option>Sim</option>
-                                <option>Não</option>
-                            </select>
-                        </label>
+                    <>
+                        <label>Deseja cadastrar um administrador?</label>
+                        <div className="adm-options">
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="adm" 
+                                    value="Sim" 
+                                    checked={admNovoUsuario === "Sim"}
+                                    onChange={(e) => alteraAdmNovoUsuario(e.target.value)} 
+                                />
+                                Sim
+                            </label>
+            
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="adm" 
+                                    value="Não" 
+                                    checked={admNovoUsuario === "Não"}
+                                    onChange={(e) => alteraAdmNovoUsuario(e.target.value)} 
+                                />
+                                Não
+                            </label>
+                        </div>
+                    </>
                 }
         
                 <button>Cadastrar</button>
