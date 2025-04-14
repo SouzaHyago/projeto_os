@@ -40,23 +40,23 @@ export default function Ordem(){
                         <div className=" max-w-5xl  p-6 bg-white border rounded shadow">
                             <div className="bg-gray-800 text-white px-4 py-2 font-bold">Cliente</div>
                             <div className="grid grid-cols-2 gap-4 border p-4">
-                                <div><strong>Nome:</strong> Clovis chupa manga</div>
-                                <div><strong>Endereço:</strong> minha casa</div>
-                                <div><strong>Telefone:</strong> (41) 9908-0808</div>
-                                <div><strong>CPF:</strong> </div>
+                                <div><strong>Nome:</strong> {dados[0].nome}</div>
+                                <div><strong>CPF:</strong> {dados[0].cpf}</div>
+                                <div><strong>Email: </strong>{dados[0].email}</div>
+                                <div><strong>Telefone:</strong> {dados[0].telefone}</div>
                             </div>
 
                             <div className="bg-gray-800 text-white px-4 py-2 font-bold mt-4">Item</div>
                             <div className="grid grid-cols-2 gap-4 border p-4">
-                                <div><strong>Nome:</strong> Aifone</div>
-                                <div><strong>Categoria:</strong> Telemóvel</div>
-                                <div><strong>Valor:</strong> 0.00</div>
-                                <div><strong>Quantidade:</strong> 1x</div>
+                                <div><strong>Nome:</strong> {dados[0].produto} </div>
+                                <div><strong>Categoria:</strong> {dados[0].categoria} </div>
+                                <div><strong>Valor:</strong> {dados[0].valorItem}</div>
+                                <div><strong>Quantidade:</strong> {dados.quantidade}</div>
                             </div>
 
                             <div className="bg-gray-800 text-white px-4 py-2 font-bold mt-4">Descrição</div>
                             <div className="border p-4">
-                                <p>Ta bem zuado</p>
+                                <p> {dados[0].descricao} </p>
                             </div>
 
                             
