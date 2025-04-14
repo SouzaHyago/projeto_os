@@ -105,7 +105,7 @@ function Cadastro() {
                                     name="adm" 
                                     value="Sim" 
                                     checked={admNovoUsuario === "Sim"}
-                                    onChange={(e) => alteraAdmNovoUsuario(e.target.value)} 
+                                    onChange={(e)=> alteraAdmNovoUsuario(e.target.value)} 
                                 />
                                 Sim
                             </label>
@@ -116,7 +116,7 @@ function Cadastro() {
                                     name="adm" 
                                     value="Não" 
                                     checked={admNovoUsuario === "Não"}
-                                    onChange={(e) => alteraAdmNovoUsuario(e.target.value)} 
+                                    onChange={(e)=> alteraAdmNovoUsuario(e.target.value)} 
                                 />
                                 Não
                             </label>
