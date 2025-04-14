@@ -5,6 +5,6 @@ const conexao = await mysql.createConnection({
     user : "root",
     password : "",
     database : "work2sell"
-});
+})
 
-export default conexao;
+export default conexao
