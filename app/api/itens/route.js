@@ -1,26 +1,40 @@
-import conexao from "@/app/lib/conexao"
+import conectar from "@/app/lib/conexao"
 
 export async function GET() {
-    const query = `SELECT * FROM itens;`
-    const [results] = await conexao.execute(query)
+    try {
+        const conexao = await conectar()
+        const [results] = await conexao.execute("SELECT * FROM itens;")
 
-    return new Response(JSON.stringify(results), {
-        status: 200,
-        headers: { "Content-Type": "application/json" }
-    })
+        return new Response(JSON.stringify(results), {
+            status: 200,
+            headers: { "Content-Type": "application/json" }
+        })
+    } catch (erro) {
+        console.error("Erro ao buscar itens:", erro)
+        return new Response("Erro ao buscar itens", { status: 500 })
+    }
 }
 
-export async function POST( request ){
+export async function POST(request) {
+    try {
+        const body = await request.json()
+        const conexao = await conectar()
 
-    const body = await request.json()
-    const query = `INSERT INTO itens(id_categoria, nome, descricao, valor) VALUES (?, ?, ?, ?);`
+        const query = `INSERT INTO itens(id_categoria, nome, descricao, valor) VALUES (?, ?, ?, ?);`
 
-    const [results, errors] = await conexao.execute(
-        query,
-        [body.id_categoria, body.nome, body.descricao, body.valor]
-    )
+        const [results] = await conexao.execute(query, [
+            body.id_categoria,
+            body.nome,
+            body.descricao,
+            body.valor
+        ])
 
-
-    return new Response( JSON.stringify(results.insertId) )
-
+        return new Response(JSON.stringify({ id: results.insertId }), {
+            status: 201,
+            headers: { "Content-Type": "application/json" }
+        })
+    } catch (erro) {
+        console.error("Erro ao inserir item:", erro)
+        return new Response("Erro ao inserir item", { status: 500 })
+    }
 }
