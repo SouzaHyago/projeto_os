@@ -12,11 +12,7 @@ function Login() {
     const [usuarios, alteraUsuarios] = useState([])
     const [email, alteraEmail] = useState("")
     const [senha, alteraSenha] = useState("")
-
-    useEffect(() => {
-        buscaUsuarios()
-    }, []);
-
+    
     async function buscaUsuarios() {
         try {
             const response = await axios.get(host+"usuarios")
@@ -25,34 +21,37 @@ function Login() {
             toast.error("Erro ao buscar usuários.")
         }
     }
-
+    
     function login(e) {
         e.preventDefault()
-
+        
         const usuarioEncontrado = usuarios.find(
             (usuario) => usuario.email == email && usuario.senha == senha
         )
-
+        
         if (usuarioEncontrado) {
-
+            
             localStorage.setItem('usuario', JSON.stringify({
                 email: usuarioEncontrado.email,
                 adm: usuarioEncontrado.adm
             }))
-
+            
             // Futuramente colocar um window.location.href para direcionar para o página inicial
             toast.success("Login realizado com sucesso!")
             alteraEmail("")
             alteraSenha("")
-
-
-
+            
+            
+            
         } else {
             toast.error("Usuário ou senha incorretos.")
         }
-
+        
     }
-
+    
+    useEffect(() => {
+        buscaUsuarios()
+    }, []);
 
     return ( 
         <div className="login">
@@ -75,7 +74,7 @@ function Login() {
             
             <p>
                 Não possui login?
-                <a href="/cadastro"> Cadastre-se</a>
+                <a href="/cadastro"> Cadastre-se </a>
             </p>
 
             <ToastContainer />
