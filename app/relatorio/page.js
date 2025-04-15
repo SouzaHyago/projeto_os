@@ -40,17 +40,20 @@ function Relatorio() {
             </style>
 
 
-            <div>
-                <h1 className="text-3xl font-bold text-blue-600 dark:text-sky-400 pt-8 "> Painel administrativo</h1>
+            <div>   
+                <button className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300 font-bold">
+                Logout
+                </button>
+                <h1 className="text-3xl font-bold text-gray-600 dark:text-sky-400 pt-8 "> Painel administrativo</h1>
                 <h2 className="pb-8 pt-8">Venda de produtos / Serviço</h2>
 
             </div>
             {
                 dados.length > 0 ? 
                     
-                    <table className="min-w-full table-auto border-collapse mx-10 my-10 ml-10">
+                    <table className="max-w-300 table-auto border-collapse mx-10 my-10 ml-10">
                         <thead>
-                            <tr className="bg-blue-600 border-1 border-black">
+                            <tr className="bg-gray-600 border-1 border-black">
                                 <th className="px-4 py-2 text-left borda  text-white">ID</th>
                                 <th className="px-4 py-2 text-left borda text-white">NOME DO CLIENTE</th>
                                 <th className="px-4 py-2 text-left borda text-white">VALOR</th>
