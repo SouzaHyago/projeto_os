@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Usuarios from "../usuarios_cadastrados/page";
 
 
 
@@ -9,21 +10,30 @@ import { useEffect, useState } from "react";
 function Relatorio() {
 
     const [dados, alteraDados] = useState([])
+    const [busca, alteraBusca] = useState("")
 
+    async function exibirBusca(){
+        const response = await axios.get("http://localhost:3000/api/compras/"+ busca)
+        alteraDados(response.data)
+        console.log(dados)
+    }
 
     //SELECT compras.id, usuarios.nome, compras.valor, compras.data, itens.nome, compras.quantidade
 
     async function buscaDados(){
         const response = await axios.get("http://localhost:3000/api/compras")
         alteraDados(response.data)
-        console.log(dados)
+       
 
     }
-        useEffect(()=> {
+        
+    useEffect(()=> {
             buscaDados()
-        }, [])
+        }, []
+    )
 
     return ( 
+
         <div>
 
             <style> 
@@ -46,9 +56,19 @@ function Relatorio() {
                 </button>
                 <h1 className="text-3xl font-bold text-gray-600 dark:text-sky-400 pt-8 "> Painel administrativo</h1>
                 <h2 className="pb-8 pt-8">Venda de produtos / Serviço</h2>
+            <div/>
+
+            <div className=" mt-10 px-4">
+                
+                <input placeholder="Digite aqui..." className= " px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500 placeholder-gray-500"
+                value={busca}   
+                onChange={(e)=> alteraBusca(e.target.value) }/>
+                <button onClick={()=> exibirBusca()}>Buscar</button>
+                
+            </div>
 
             </div>
-            {
+            { 
                 dados.length > 0 ? 
                     
                     <table className="max-w-300 table-auto border-collapse mx-10 my-10 ml-10">
@@ -83,11 +103,11 @@ function Relatorio() {
 
                     </table>
                 :   
-                    <p> Carregando... </p> 
+                    <p><br/> Carregando... </p> 
                 
             }     
 
-        </div>
+            </div>
      );
 }
 
