@@ -20,12 +20,12 @@ export default function ListaItens() {
                 <p>Nenhum item encontrado.</p>
             ) : (
                 <ul>
-                    {itens.map(item => (
-                        <li key={item.id}>
-                            <Link href={`/itens/${item.id}`}>
-                                <strong>{item.nome}</strong> - R$ {item.valor}
-                            </Link>
-                        </li>
+                 {itens.map(item => (
+                     <li key={item.id}>
+                        <Link href={`/api/itens/${item.id}`}>
+                            <strong>{item.nome}</strong> - R$ {item.valor}
+                        </Link>
+                    </li>
                     ))}
                 </ul>
             )}
