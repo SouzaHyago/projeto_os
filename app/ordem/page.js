@@ -1,13 +1,15 @@
 'use client'
 
 import axios from 'axios';
-import Image from 'next/image'
+import { redirect, RedirectType } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Tabela from './components/Tabela';
 
 
 export default function Ordem(){
 
     const [dados,alteraDados] = useState([]);
+    const [gerandoPdf,setGerandoPdf] = useState(true);
 
     async function buscaDados() {
         const response = await axios.get("http://localhost:3000/api/ordem",{
@@ -20,69 +22,89 @@ export default function Ordem(){
         alteraDados(response.data);
     }
 
+
+    function baixarPDF() {
+        fetch('/api/gerar-pdf')
+          .then((res) => res.blob())
+          .then((blob) => {
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Ordem de Serviço';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            window.URL.revokeObjectURL(url);
+          })
+          .catch((err) => console.error('Erro ao baixar o PDF:', err));
+
+      }
+
+
+
+
     useEffect(()=>{
-        buscaDados()
+        buscaDados(),
+        setGerandoPdf(false)
     },[])
     return( 
     
         <div >
 
+            
+                <style>
+                                            
+                    {`
+                        button{
+                            border-radius: 5px;
+                            padding: 0.65rem 0.55rem 0.6rem 0.40rem;
+                            cursor: pointer;
+                            color: #1D2027;
+                            font-size: 1rem;
+                            border: none;
+                            margin-top: 5px;
+                            box-shadow: 1px 0.75px 5px #1B87EA;
+                            text-decoration: none;
+                        }
+
+                        button{
+                            transition: 0.3s;
+                            color: #F6F7F6;
+                        }
+                    `}
+            
+            </style>
+
                 <header className=' my-7   flex justify-center '>
                     <img src="https://placehold.co/100x50"  alt="Picture of the author" className='pr-10' />
                     <h1 className="text-2xl">Venda  N° {123}</h1>
                 </header>
+          
 
             {
-                dados.length > 0 ?
-                    <div className='flex flex-col m-auto w-150' >
-                
+                // dados.length > 0 ?
 
-                        <div className=" max-w-5xl  p-6 bg-white border rounded shadow">
-                            <div className="bg-gray-800 text-white px-4 py-2 font-bold">Cliente</div>
-                            <div className="grid grid-cols-2 gap-4 border p-4">
-                                <div><strong>Nome:</strong> {dados[0].nome}</div>
-                                <div><strong>CPF:</strong> {dados[0].cpf}</div>
-                                <div><strong>Email: </strong>{dados[0].email}</div>
-                                <div><strong>Telefone:</strong> {dados[0].telefone}</div>
-                            </div>
+                // //    { <Tabela
+                // //         nome = {dados[0].nome}
+                // //         cpf = {dados[0].cpf}
+                // //         email = {dados[0].email}
+                // //         telefone = {dados[0].telefone}
+                // //         produto = {dados[0].produto}
+                // //         categoria = {dados[0].categoria}
+                // //         valorItem = {dados[0].valo}
+                // //         quantidade = {dados[0].}
+                // //         descricao = {dados[0].}
+                // //         data = {dados[0].}
+                // //         valor = {dados[0].}
+                // //     />}
+                // :
+                //     <p>carregando...</p>
 
-                            <div className="bg-gray-800 text-white px-4 py-2 font-bold mt-4">Item</div>
-                            <div className="grid grid-cols-2 gap-4 border p-4">
-                                <div><strong>Nome:</strong> {dados[0].produto} </div>
-                                <div><strong>Categoria:</strong> {dados[0].categoria} </div>
-                                <div><strong>Valor:</strong> {dados[0].valorItem}</div>
-                                <div><strong>Quantidade:</strong> {dados.quantidade}</div>
-                            </div>
+            }
 
-                            <div className="bg-gray-800 text-white px-4 py-2 font-bold mt-4">Descrição</div>
-                            <div className="border p-4">
-                                <p> {dados[0].descricao} </p>
-                            </div>
-
-                            
-                            <div className="grid grid-cols-2 gap-4 mt-4 text-sm">
-                                <div>
-                                    <strong>Data:</strong> 26/02/2021 às 8h
-                                </div>
-
-                                <div>
-                                    <strong>Contatos:</strong> (16) 4002-8922
-                                </div>
-
-                                <div>
-                                    <strong>Total da venda:</strong> R$ 123.55
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                    
-
-                    
-
-                    </div>
-                :
-                    <p>carregando...</p>
+            {
+                !gerandoPdf &&
+                    <button className='bg-gray-800' onClick={()=> baixarPDF()}>Gerar PDF</button>
 
             }
 
