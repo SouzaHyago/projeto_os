@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Menu from './components/Menu'
 
 export default function Home() {
   const [categorias, setCategorias] = useState([])
@@ -14,7 +15,9 @@ export default function Home() {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Bem-vindo à Loja</h1>
+
+      <Menu/>
+    
       <Link href="/itens">Ver todos os itens</Link>
       <br />
       <Link href="/api/categorias/new">Nova Categoria</Link>
