@@ -41,7 +41,6 @@ export default function Home() {
                 itens.map( i =>
                     <div className='itens'>
                         <ul>
-                            <li>{i.id_categoria}</li>
                             <li>{i.nome}</li>
                             <li>{i.descricao}</li>
                             <li>R$ {i.valor}</li>
