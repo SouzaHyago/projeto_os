@@ -9,6 +9,7 @@ export default function Home() {
     const [categorias, alteraCategorias] = useState([])
     const [itens, alteraItens] = useState([])
 
+
     async function buscaCategorias() {
         const response = await axios.get("http://localhost:3000/api/categorias");
         alteraCategorias(response.data);
@@ -49,21 +50,6 @@ export default function Home() {
                 )
             }
 
-        
-        
-            {/* <Link href="/itens">Ver todos os itens</Link>
-            <br />
-            <Link href="/api/categorias/new">Nova Categoria</Link>
-            <h2>Categorias</h2>
-            <ul>
-                {categorias.map(cat => (
-                <li key={cat.id}>
-                    <Link href={`/api/categorias/${cat.id}`}>
-                    {cat.nome}
-                    </Link>
-                </li>
-                ))}
-            </ul> */}
         </div>
     )
 }
