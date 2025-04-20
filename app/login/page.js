@@ -39,9 +39,7 @@ function Login() {
             // Futuramente colocar um window.location.href para direcionar para o página inicial
             toast.success("Login realizado com sucesso!")
             alteraEmail("")
-            alteraSenha("")
-            
-            
+            alteraSenha("")    
             
         } else {
             toast.error("Usuário ou senha incorretos.")
@@ -79,8 +77,7 @@ function Login() {
 
             <ToastContainer />
 
-        </div>
-        
+        </div>  
     );
 }
 
