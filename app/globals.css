@@ -1,1 +1,92 @@
 @import "tailwindcss";
+
+/* Estilo global */
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container centralizado */
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Títulos */
+  .titulo {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .subtitulo {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    color: #444;
+  }
+  
+  /* Botões */
+  .links {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .links button {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .links button:hover {
+    background-color: #005bb5;
+  }
+  
+  /* Lista de categorias */
+  .lista-categorias {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .lista-categorias li {
+    margin: 10px 0;
+  }
+  
+  .lista-categorias a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .lista-categorias a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Menu */
+  .menu {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-bottom: 2px solid #eaeaea;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .menu a:hover {
+    color: #0070f3;
+  }
+  

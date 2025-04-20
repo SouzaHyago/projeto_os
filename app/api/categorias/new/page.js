@@ -5,21 +5,30 @@ import { useRouter } from "next/navigation"
 
 export default function NovaCategoria() {
     const [nome, setNome] = useState("")
+    const [erro, setErro] = useState(null)
     const router = useRouter()
 
-    function cadastrar(e) {
+    async function cadastrar(e) {
         e.preventDefault()
 
-        axios.post("http://localhost:3000/api/categorias", { nome })
-            .then(() => {
-                alert("Categoria cadastrada!")
-                router.push("/")
-            }).catch(() => alert("Erro ao cadastrar."))
+        if (!nome.trim()) {
+            setErro("O nome da categoria não pode ser vazio!")
+            return
+        }
+
+        try {
+            await axios.post("http://localhost:3000/api/categorias", { nome })
+            alert("Categoria cadastrada!")
+            router.push("/")
+        } catch {
+            setErro("Erro ao cadastrar a categoria.")
+        }
     }
 
     return (
         <div>
             <h1>Cadastrar Nova Categoria</h1>
+            {erro && <div style={{ color: "red" }}>{erro}</div>}
             <form onSubmit={cadastrar}>
                 <input
                     type="text"
