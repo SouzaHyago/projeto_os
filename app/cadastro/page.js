@@ -80,15 +80,15 @@ function Cadastro() {
                 </label> <br/>
         
                 <label>Email <br/>
-                <input required placeholder="Digite seu email" onChange={ (e)=> alteraEmail(e.target.value) } value={email} />
+                <input required type="email" placeholder="Digite seu email" onChange={ (e)=> alteraEmail(e.target.value) } value={email} />
                 </label> <br/>
 
                 <label>CPF<br/>
-                <input required placeholder="Digite seu cpf" onChange={ (e)=> alteraCpf(e.target.value) } value={cpf} />
+                <input required type="phone" placeholder="Digite seu cpf" onChange={ (e)=> alteraCpf(e.target.value) } value={cpf} />
                 </label> <br/>
 
                 <label>Telefone/Celular<br/>
-                <input required placeholder="Digite seu telefone" onChange={ (e)=> alteraTelefone(e.target.value) } value={telefone} />
+                <input required type="phone" placeholder="Digite seu telefone" onChange={ (e)=> alteraTelefone(e.target.value) } value={telefone} />
                 </label> <br/>
         
                 <label>Senha <br/>
