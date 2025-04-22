@@ -37,6 +37,7 @@ function Login() {
             }))
             
             // Futuramente colocar um window.location.href para direcionar para o página inicial
+            window.location.href = "/";
             toast.success("Login realizado com sucesso!")
             alteraEmail("")
             alteraSenha("")    

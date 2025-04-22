@@ -1,3 +1,3 @@
-const host = "http://10.60.46.26:3000/api/"
+const host = "http://localhost:3000/api/"
 
 export default host

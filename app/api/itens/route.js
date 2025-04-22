@@ -1,18 +1,16 @@
 import conectar from "@/app/lib/conexao"
 
 export async function GET() {
-    try {
-        const conexao = await conectar()
-        const [results] = await conexao.execute("SELECT * FROM itens;")
+    const query = ` SELECT * FROM itens`
+    const [results] = await conectar.execute(query)
 
-        return new Response(JSON.stringify(results), {
+    return new Response(
+        JSON.stringify(results),
+        {
             status: 200,
             headers: { "Content-Type": "application/json" }
-        })
-    } catch (erro) {
-        console.error("Erro ao buscar itens:", erro)
-        return new Response("Erro ao buscar itens", { status: 500 })
-    }
+        }
+    )
 }
 
 export async function POST(request) {
