@@ -7,4 +7,4 @@ const conexao = await mysql.createConnection({
     database : "work2sell"
 })
 
-export default conexao
+export default conexao;
