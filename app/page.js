@@ -82,15 +82,9 @@ export default function Home() {
 	return (
 		<div className="p-4">
 
-		<Menu></Menu>
-		
-		<img src="https://placehold.co/100x50"  alt="Picture of the author" className='pr-10 mb-10' />
+		<Menu/>
 
-		<div className='menuCategoria'>
-			<img src="https://placehold.co/50x50"  alt="Picture of the author" className='pr-10 mb-10' />
-		</div>
-
-		<button onClick={() => alteraMenuAberto(!menuAberto)} className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 transition">
+		<button onClick={() => alteraMenuAberto(!menuAberto)} className="bg-blue-500 text-white mt-15 px-4 py-2 rounded shadow hover:bg-blue-600 transition">
 			{menuAberto ? 'Esconder categorias' : 'Selecionar categoria'}
 		</button>
 
