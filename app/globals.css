@@ -89,4 +89,9 @@ body {
   .menu a:hover {
     color: #0070f3;
   }
+
+  .zoom:hover{
+    transition: 0.3s;
+    transform: scale(1.1);
+  }
   
