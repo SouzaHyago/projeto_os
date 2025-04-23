@@ -64,9 +64,6 @@ function Relatorio() {
 
 
             <div>   
-                <button className="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300 font-bold">
-                Logout
-                </button>
                 <h1 className="text-3xl font-bold text-gray-600 dark:text-sky-400 pt-8 "> Painel administrativo </h1>
                 <h2 className="pb-8 pt-8">Venda de produtos / Serviço</h2>
             <div/>

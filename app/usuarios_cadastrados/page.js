@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import './usuarios_cadastrados.css'
+import Menu from "../components/Menu"
 
 function Usuarios() {
 
@@ -19,6 +20,10 @@ function Usuarios() {
 
     return (
         <div className="container" >
+
+            <div className="menu">
+                <Menu/>
+            </div>
 
             <h1>Usuários cadastrados no sistema</h1>
 
