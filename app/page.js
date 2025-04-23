@@ -11,12 +11,29 @@ export default function Home() {
 	const [categorias,alteracategorias] = useState([]);
 	const [mostrando,alteraMostrando] =  useState([]);
 	const [menuAberto, alteraMenuAberto] = useState(false);
+	const [carrinho,alteraCarrinho] = useState([]);
 
 
 	async function buscarProdutos() {
 		const response = await axios.get("http://localhost:3000/api/itens");
 		alteraProdutos(response.data);
-		alteraMostrando(response.data)
+		alteraMostrando(response.data);
+	}
+
+	function adicionarNoCarrinho(item){
+		let listaTemporaria = carrinho
+		listaTemporaria.push(item)
+		listaTemporaria.push({quantidade : 3})
+		alteraCarrinho(listaTemporaria);
+		const local = JSON.parse(localStorage.getItem('usuario'));
+		console.log(local)
+		localStorage.setItem('usuario', JSON.stringify({
+			email: local.email,
+			adm: local.adm,
+			carrinho : carrinho
+		
+			
+		}))
 	}
 
 	async function buscarCategorias() {
@@ -88,12 +105,9 @@ export default function Home() {
 		{
 			mostrando.length > 0 ? 
 			
-			<div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 border mt-10">
+			<div  className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 border mt-10">
 				{mostrando.map((i) => (
-				<div
-					key={i.id}
-					className="border max-h-40 mx-5 my-5  rounded-xl shadow p-4 bg-white hover:shadow-md transition-shadow"
-				>
+				<div onClick={()=> adicionarNoCarrinho(i)} key={i.id} className="border max-h-40 mx-5 my-5  rounded-xl shadow p-4 bg-white hover:shadow-md transition-shadow">
 					<h3 className="text-lg font-semibold mb-1">{i.nome}</h3>
 					<p className="text-sm text-gray-600">{i.descricao}</p>
 				</div>
