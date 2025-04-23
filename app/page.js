@@ -23,7 +23,7 @@ export default function Home() {
 	function adicionarNoCarrinho(item){
 		let listaTemporaria = carrinho
 		listaTemporaria.push(item)
-		listaTemporaria.push({quantidade : 3})
+		item['quantidade'] = 3;
 		alteraCarrinho(listaTemporaria);
 		const local = JSON.parse(localStorage.getItem('usuario'));
 		console.log(local)

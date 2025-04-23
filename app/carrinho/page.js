@@ -10,6 +10,7 @@ export default function Carrinho(){
     function buscarCarrinho(){
         const response = JSON.parse(localStorage.getItem('usuario'))
         alteraCarrinho(response.carrinho);
+        console.log(response.carrinho)
     }
 
     useEffect(()=> {
@@ -26,16 +27,15 @@ export default function Carrinho(){
             {
                 carrinho.length > 0 &&
     
-                    <div>
                         <div  className=" max-w-200 flex items-center flex-col">
                             {carrinho.map((i,index) => (
-                            <div key={index} className="border max-h-40 mx-5 my-5  rounded-xl shadow p-4 bg-white hover:shadow-md transition-shadow">
-                                <h3 className="text-lg font-semibold mb-1">{i.nome}</h3>
-                                <p className="text-sm text-gray-600">{i.descricao}</p>
-                            </div>
+                                <div key={index} className="border max-h-40 mx-5 my-5  rounded-xl shadow p-4 bg-white hover:shadow-md transition-shadow">
+                                    <h3 className="text-lg font-semibold mb-1">{i.nome}</h3>
+                                    <p className="text-sm text-gray-600">{i.descricao}</p>
+                                    <p>{index}</p>
+                                </div>
                             ))}
                         </div>
-                    </div>
     
             }
             
