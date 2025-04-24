@@ -14,7 +14,7 @@ export default function Home() {
 	const [quantidade,alteraQuantidade] = useState(0);
 	
 	async function buscarProdutos() {
-		const response = await axios.get("http://localhost:3000/api/itens");
+		const response = await axios.get(host+"itens");
 		alteraProdutos(response.data);
 		alteraMostrando(response.data)
 	}
@@ -35,7 +35,7 @@ export default function Home() {
 		}))
 	}
 	async function buscarCategorias() {
-		const response = await axios.get("http://localhost:3000/api/categorias");
+		const response = await axios.get(host+"categorias");
 		alteracategorias(response.data);
 		console.log(response.data)
 	}
