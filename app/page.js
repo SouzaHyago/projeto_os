@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Menu from './components/Menu'
+import host from './lib/host';
 
 export default function Home() {
 
@@ -10,8 +11,10 @@ export default function Home() {
 	const [mostrando, alteraMostrando] = useState([]);
 	const [menuAberto, alteraMenuAberto] = useState(false);
 	const [produtoSelecionado, setProdutoSelecionado] = useState(null); 
-	const [carrinho, setCarrinho] = useState([]);
+	const [carrinho, alteraCarrinho] = useState([]);
 	const [quantidade,alteraQuantidade] = useState(0);
+	const [itemModal,alteraItemModel] = useState({})
+
 	
 	async function buscarProdutos() {
 		const response = await axios.get(host+"itens");
@@ -19,21 +22,30 @@ export default function Home() {
 		alteraMostrando(response.data)
 	}
 	
-	function adicionarNoCarrinho(item){
-		let listaTemporaria = carrinho
+	async function adicionarNoCarrinho(item){
+
+		let local = await JSON.parse(localStorage.getItem('usuario'));
+
+
+
+		let listaTemporaria = local.carrinho
+		console.log(local.carrinho)
 		listaTemporaria.push(item)
-		item['quantidade'] = 3;
+		item['quantidade'] = quantidade < 1 ? 1 : quantidade;
 		alteraCarrinho(listaTemporaria);
-		const local = JSON.parse(localStorage.getItem('usuario'));
 		console.log(local)
+
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
 			adm: local.adm,
 			carrinho : carrinho
 		
-			
 		}))
+
+		fecharModal();
 	}
+		
+
 	async function buscarCategorias() {
 		const response = await axios.get(host+"categorias");
 		alteracategorias(response.data);
@@ -110,7 +122,7 @@ export default function Home() {
 							<div
 								key={i.id}
 								className="border max-h-40 mx-5 my-5 rounded-xl shadow p-4 bg-white hover:shadow-md zoom transition-shadow"
-								onClick={() => abrirModal(i)} // Ao clicar, abre o modal
+								onClick={() => {alteraItemModel(i);abrirModal(i)}} // Ao clicar, abre o modal
 							>
 								<h3 className="text-lg font-semibold mb-1">{i.nome}</h3>
 								<p className="text-sm text-gray-600">{i.descricao}</p>
@@ -136,11 +148,11 @@ export default function Home() {
 						<p className="text-lg mb-2">{produtoSelecionado.descricao}</p>
 						<p className="text-xl font-semibold">R$ {produtoSelecionado.valor}</p>
 						<label htmlFor="">quantidade </label>
-						<input className='border' placeholder={"digite uma quantidade"} onChange={(e)=> alteraQuantidade(e.value)} type="number"/>
+						<input className='border' placeholder={"digite uma quantidade"} onChange={(e)=> alteraQuantidade(e.value)} type="number" min={0}/>
 
 
 						<button
-							onClick={() => adicionarNoCarrinho(i)}
+							onClick={() => {adicionarNoCarrinho(itemModal)}}
 							className="mt-2 bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600 transition"
 						>
 							Adicionar ao Carrinho

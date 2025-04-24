@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUpRightFromSquare, faBagShopping, faBars, faClipboardList, faListUl, faUser, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { redirect } from 'next/navigation';
 
 function Menu() {
     const [ativo, alteraAtivo] = useState(false);
@@ -73,6 +74,8 @@ function Menu() {
                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Logout
                 </button><br/>
 
+                <button onClick={()=> redirect("/carrinho")} >Carrinho</button>
+
                 {
                     adm == 1 &&
                         <div>
@@ -112,6 +115,7 @@ function Menu() {
                             </button>
                         </div>
                 }
+
 
 
             </div>
