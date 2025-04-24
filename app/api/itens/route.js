@@ -16,11 +16,10 @@ export async function GET() {
 export async function POST(request) {
     try {
         const body = await request.json()
-        const conexao = await conectar()
 
         const query = `INSERT INTO itens(id_categoria, nome, descricao, valor) VALUES (?, ?, ?, ?);`
 
-        const [results] = await conexao.execute(query, [
+        const [results] = await conectar.execute(query, [
             body.id_categoria,
             body.nome,
             body.descricao,

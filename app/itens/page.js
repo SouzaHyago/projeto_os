@@ -10,7 +10,7 @@ export default function ItensPage() {
   useEffect(() => {
     setLoading(true)
 
-    axios.get('http://localhost:3000/api/itens')
+    axios.get(host+'itens')
       .then(res => {
         setItens(res.data)
         setLoading(false)

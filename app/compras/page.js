@@ -6,7 +6,7 @@ export default function ListaCompras() {
   const [compras, setCompras] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/compras")
+    axios.get(host+"compras")
       .then(res => setCompras(res.data))
       .catch(err => console.error("Erro ao buscar compras", err))
   }, [])

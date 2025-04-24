@@ -16,11 +16,15 @@ function CadastroItens() {
     const [categorias, alteraCategorias] = useState([]);
 
     async function cadastroItens() {
+
+        let valorLocal = valor
+        valorLocal = valorLocal.replaceAll(",", ".")
+
         const obj = {
             id_categoria: categoria,
             nome: nome,
             descricao: descricao,
-            valor: valor
+            valor: valorLocal
         };
 
         try {
@@ -33,7 +37,7 @@ function CadastroItens() {
             alteraValor("")
 
         } catch (e) {
-            toast.error("Esse produto já existe...")
+            
         }
     }
 

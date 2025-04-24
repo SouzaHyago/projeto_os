@@ -1,57 +1,45 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
-import axios from 'axios'
+import { useState } from "react"
+import axios from "axios"
+import { useRouter } from "next/navigation"
 
-export default function ItensDaCategoria() {
-  const [itens, setItens] = useState([])
-  const [categoria, setCategoria] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const { id } = useParams()
+export default function NovaCategoria() {
+    const [nome, setNome] = useState("")
+    const [erro, setErro] = useState(null)
+    const router = useRouter()
 
-  useEffect(() => {
-    setLoading(true)
+    async function cadastrar(e) {
+        e.preventDefault()
 
-    axios.get(`http://localhost:3000/api/itens?categoriaId=${id}`)
-      .then(res => setItens(res.data))
-      .catch(() => setError('Erro ao carregar itens'))
+        if (!nome.trim()) {
+            setErro("O nome da categoria não pode ser vazio!")
+            return
+        }
 
-    axios.get(`http://localhost:3000/api/categorias/${id}`)
-      .then(res => {
-        setCategoria(res.data)
-        setLoading(false)
-      })
-      .catch(() => {
-        setError('Erro ao carregar categoria')
-        setLoading(false)
-      })
-  }, [id])
+        try {
+            await axios.post(host+"categorias", { nome })
+            alert("Categoria cadastrada!")
+            router.push("/")
+        } catch {
+            setErro("Erro ao cadastrar a categoria.")
+        }
+    }
 
-  if (loading) {
-    return <div className="loading">Carregando...</div>
-  }
-
-  if (error) {
-    return <div style={{ color: 'red', textAlign: 'center', marginTop: '20px' }}>{error}</div>
-  }
-
-  return (
-    <div className="container">
-      <h1 className="category-title">Itens da Categoria: {categoria?.nome || 'Categoria não encontrada'}</h1>
-      <ul>
-        {itens.length > 0 ? (
-          itens.map(item => (
-            <li key={item.id}>
-              <strong>{item.nome}</strong><br />
-              <span>{item.descricao}</span><br />
-              <span>R$ {Number(item.valor).toFixed(2)}</span>
-            </li>
-          ))
-        ) : (
-          <li>Nenhum item encontrado nesta categoria.</li>
-        )}
-      </ul>
-    </div>
-  )
+    return (
+        <div>
+            <h1>Cadastrar Nova Categoria</h1>
+            {erro && <div style={{ color: "red" }}>{erro}</div>}
+            <form onSubmit={cadastrar}>
+                <input
+                    type="text"
+                    placeholder="Nome da categoria"
+                    value={nome}
+                    onChange={(e) => setNome(e.target.value)}
+                    required
+                />
+                <br />
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    )
 }

@@ -33,14 +33,13 @@ function Login() {
             
             localStorage.setItem('usuario', JSON.stringify({
                 email: usuarioEncontrado.email,
-                adm: usuarioEncontrado.adm
+                adm: usuarioEncontrado.adm,
+                carrinho : ''
             }))
             
-            // Futuramente colocar um window.location.href para direcionar para o página inicial
-            window.location.href = "/";
-            toast.success("Login realizado com sucesso!")
             alteraEmail("")
             alteraSenha("")    
+            window.location.href = "/"
             
         } else {
             toast.error("Usuário ou senha incorretos.")

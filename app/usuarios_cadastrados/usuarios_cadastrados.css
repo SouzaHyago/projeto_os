@@ -21,9 +21,8 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+.menu h1{
+    color: #FFF;
 }
 
 h1 {
