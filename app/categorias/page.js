@@ -17,7 +17,7 @@ export default function NovaCategoria() {
         }
 
         try {
-            await axios.post("http://localhost:3000/api/categorias", { nome })
+            await axios.post(host+"categorias", { nome })
             alert("Categoria cadastrada!")
             router.push("/")
         } catch {

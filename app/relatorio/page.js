@@ -4,9 +4,6 @@ import axios from "axios";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
-
-
-
 function Relatorio() {
 
     const [dados, alteraDados] = useState([])
@@ -26,7 +23,7 @@ function Relatorio() {
     }
 
     async function exibirBusca(){
-        const response = await axios.get("http://localhost:3000/api/compras/"+ busca)
+        const response = await axios.get(host+"compras/"+ busca)
         alteraDados(response.data)
         console.log(response)
     }
@@ -34,7 +31,7 @@ function Relatorio() {
     //SELECT compras.id, usuarios.nome, compras.valor, compras.data, itens.nome, compras.quantidade
 
     async function buscaDados(){
-        const response = await axios.get("http://localhost:3000/api/compras")
+        const response = await axios.get(host+"compras")
         alteraDados(response.data)
        
 
