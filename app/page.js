@@ -13,9 +13,6 @@ export default function Home() {
 	const [carrinho, setCarrinho] = useState([]);
 	const [quantidade,alteraQuantidade] = useState(0);
 	
-
-
-	
 	async function buscarProdutos() {
 		const response = await axios.get("http://localhost:3000/api/itens");
 		alteraProdutos(response.data);

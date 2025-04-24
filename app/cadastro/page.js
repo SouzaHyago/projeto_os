@@ -68,9 +68,10 @@ function Cadastro() {
         verificarAdm()
     }, [])
 
-    return (  
-        <div className="cadastro">
+    return (
 
+        <div className="cadastro">
+            
             <h1>Cadastro</h1>
 
             <form onSubmit={(e) => { e.preventDefault(); cadastro(); }}>
