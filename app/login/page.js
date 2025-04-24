@@ -34,7 +34,8 @@ function Login() {
             localStorage.setItem('usuario', JSON.stringify({
                 email: usuarioEncontrado.email,
                 adm: usuarioEncontrado.adm,
-                carrinho : ''
+                id: usuarioEncontrado.id,
+                carrinho : []
             }))
             
             alteraEmail("")

@@ -46,8 +46,8 @@ function Menu() {
                     <FontAwesomeIcon icon={faBars} />
                 </div>
 
-                <h1 style={{fontWeight: 600, fontSize: 24, textAlign: "center", margin: 0 }}>Work2sell</h1>
-                <div></div>
+                <h1 style={{fontWeight: 600, fontSize: 24, textAlign: "center", margin: 0, cursor: 'pointer' }} onClick={()=> redirect("/")} >Work2sell</h1>
+                <div style={{cursor: 'pointer' }} onClick={()=> redirect("/")} >Início</div>
                 
             </div>
 

@@ -1,10 +1,14 @@
 'use client'
 
+import axios from "axios"
 import { useEffect, useState } from "react"
+import host from "../lib/host"
+import Menu from "../components/Menu"
 
 export default function Carrinho(){
 
     const [carrinho, alteraCarrinho] = useState([])
+    
 
     function buscarCarrinho() {
         const response = JSON.parse(localStorage.getItem('usuario'))
@@ -13,16 +17,51 @@ export default function Carrinho(){
         }
     }
 
+    async function finalizarCompra() {
+
+
+        const local = JSON.parse(localStorage.getItem('usuario'));
+
+
+        for(let i = 0; i < carrinho.length;i++){
+            console.log(carrinho[i])
+
+            const obj = {
+                id_item : carrinho[i].id,
+                id_usuario : local.id,
+                stats : 1,
+                descricao: "",
+                quantidade : carrinho[i].quantidade,
+                valorItem : carrinho[i].valor
+            }
+
+            const response = await axios.post(host+"compras",obj)
+            console.log(response)
+        };
+
+        localStorage.setItem('usuario', JSON.stringify({
+			email: local.email,
+			adm: local.adm,
+			carrinho : [],
+            id : local.id
+		
+		}))
+        buscarCarrinho();
+
+
+
+    
+    }
+
     async function removerItem(item){
         let local = await JSON.parse(localStorage.getItem('usuario'));
 		let listaTemporaria = local.carrinho
 
 		console.log(local.carrinho)
-		listaTemporaria.push(item)
 
         for(let i = 0; i < listaTemporaria.length;i++){
-            if(item.id == id){
-                listaTemporaria.slice(i,1);
+            if(listaTemporaria[0].id == item.id){
+                listaTemporaria.splice(i,1);
             }
         }
 
@@ -31,7 +70,8 @@ export default function Carrinho(){
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
 			adm: local.adm,
-			carrinho : listaTemporaria
+			carrinho : listaTemporaria,
+            id : local.id
 		
 		}))
 
@@ -44,7 +84,9 @@ export default function Carrinho(){
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
-            <h1 className="text-3xl font-bold mb-6 text-gray-800">🛒 Carrinho de Compras</h1>
+
+            <Menu/>
+            <h1 className="text-3xl mt-10 font-bold mb-6 text-gray-800">🛒 Carrinho de Compras</h1>
 
             {
                 carrinho && carrinho.length > 0 ? (
@@ -62,12 +104,12 @@ export default function Carrinho(){
                                 </button>
                             </div>
                         ))}
-                        <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded self-start">
+                        <button onClick={()=> finalizarCompra()} className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded self-start">
                             Finalizar Compra
                         </button>
                     </div>
                 ) : (
-                    <p className="text-gray-600 text-lg">Seu carrinho está vazio 😕</p>
+                    <p className="text-gray-600 text-lg" >Seu carrinho está vazio 😕</p>
                 )
             }
         </div>

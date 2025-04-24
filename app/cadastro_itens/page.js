@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./cadastro_itens.css"
 import axios from "axios";
 import host from "../lib/host";
+import Menu from "../components/Menu";
 
 function CadastroItens() {
 
@@ -52,6 +53,7 @@ function CadastroItens() {
 
     return (
         <div className="cadastro_produtos">
+            <Menu/>
 
             <h1>Cadastro de Itens</h1>
 

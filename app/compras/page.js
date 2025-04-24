@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import host from '../lib/host'
 
 export default function ListaCompras() {
   const [compras, setCompras] = useState([])
