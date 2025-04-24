@@ -90,4 +90,4 @@ function CadastroItens() {
     )
 }
 
-export default CadastroItens
+export default CadastroItens;
