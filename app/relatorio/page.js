@@ -11,6 +11,10 @@ function Relatorio() {
     const [dados, alteraDados] = useState([])
     const [busca, alteraBusca] = useState("")
     const [numero,alteraNumero] = useState(0)
+    const [mostrar,alteraMostrar] = useState(false)
+    const [stats, alteraStats] = useState("");
+
+
 
 
     function formataData( valor ){
@@ -27,6 +31,9 @@ function Relatorio() {
     async function exibirBusca(){
         const response = await axios.get(host+"compras/"+ busca)
         alteraDados(response.data)
+        if(response.data > 0){
+            alteraMostrar(true)
+        }
         console.log(response)
     }
 
@@ -35,6 +42,8 @@ function Relatorio() {
     async function buscaDados(){
         const response = await axios.get(host+"compras")
         alteraDados(response.data)
+        alteraStats(response.statusText) 
+
        
 
     }
@@ -79,8 +88,11 @@ function Relatorio() {
             </div>
 
             </div>
+
+           {!stats && <p>carregando...</p>}
+          
             { 
-                dados.length > 0 ? 
+                mostrar &&
                     
                     <table className="max-w-300 table-auto border-collapse mx-10 my-10 ml-10">
                         <thead>
@@ -109,16 +121,15 @@ function Relatorio() {
 
                                ) 
                             }
-             
+
                         </tbody>
 
                     </table>
-                :   
-                    <p className="mr-3 size-5">
-                        Carregando... 
-                    </p> 
-                
-            }  
+            } 
+
+            {stats && dados <= 0 && <p>nenhuma compra finalizada</p>}
+
+            
             </div>
      );
 }

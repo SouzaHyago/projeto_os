@@ -18,7 +18,7 @@ export async function POST(request) {
     }
 
     const query = "INSERT INTO categorias (nome) VALUES (?);"
-    await conexao.execute(query, [body.nome])
+    await conexao.execute(query, [body.nomee])
 
     return new Response(JSON.stringify({ msg: "Categoria criada com sucesso!" }), { status: 201 })
 }

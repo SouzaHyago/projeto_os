@@ -44,7 +44,9 @@ export default function Home() {
 		let listaTemporaria = local.carrinho;
 		console.log(local.carrinho);
 		listaTemporaria.push(item);
-		item['quantidade'] = quantidade < 1 ? 1 : quantidade;
+		 if(quantidade < 1){
+			quantidade = 1;
+		}
 		alteraCarrinho(listaTemporaria);
 		console.log(local);
 
