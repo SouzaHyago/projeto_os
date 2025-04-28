@@ -43,12 +43,18 @@ export default function Home() {
 
 		let listaTemporaria = local.carrinho;
 		console.log(local.carrinho);
-		listaTemporaria.push(item);
-		 if(quantidade < 1){
-			quantidade = 1;
+		
+		console.log(quantidade)
+		if(quantidade < 1){
+			item['qtd'] = 1;
+
+		}else{
+			item['qtd'] = parseInt(quantidade);
+
 		}
+		listaTemporaria.push(item);
 		alteraCarrinho(listaTemporaria);
-		console.log(local);
+		console.log(listaTemporaria);
 
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
@@ -179,7 +185,7 @@ export default function Home() {
 						:
 							<div>
 								<label htmlFor="">quantidade </label>
-								<input className='border' placeholder={"digite uma quantidade"} onChange={(e)=> alteraQuantidade(e.value)} type="number" min={0}/>
+								<input className='border' placeholder={"digite uma quantidade"} onChange={(e)=> alteraQuantidade(e.target.value)} type="number" min={0}/>
 								<button
 									onClick={() => {adicionarNoCarrinho(itemModal)}}
 									className="mt-2 bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600 transition"

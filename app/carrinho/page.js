@@ -31,7 +31,7 @@ export default function Carrinho(){
                 id_usuario : local.id,
                 stats : 1,
                 descricao: "",
-                quantidade : carrinho[i].quantidade,
+                quantidade : carrinho[i].qtd,
                 valorItem : carrinho[i].valor
             }
 
@@ -97,7 +97,7 @@ export default function Carrinho(){
                                     <h3 className="text-xl font-semibold text-gray-900">{item.nome}</h3>
                                     <p className="text-gray-700 mt-1">{item.descricao}</p>
                                     <p className="text-green-600 font-bold mt-2">R$ {item.valor.toFixed(2)}</p>
-                                    <p className="text-sm text-gray-500 mt-1">Quantidade: {item.quantidade}</p>
+                                    <p className="text-sm text-gray-500 mt-1">Quantidade: {item.qtd}</p>
                                 </div>
                                 <button onClick={()=> removerItem(item)} className="mt-4 md:mt-0 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
                                     Remover

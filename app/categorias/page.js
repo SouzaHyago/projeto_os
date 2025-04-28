@@ -3,7 +3,7 @@ import { useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import Menu from "../components/Menu"
-
+import "./categorias.css"
 
 
 export default function NovaCategoria() {
@@ -29,12 +29,12 @@ export default function NovaCategoria() {
     }
 
     return (
-        <div>
+        <div id="categorias" className="categorias">
 
             <Menu/>
             <h1 className="mt-20" >Cadastrar Nova Categoria</h1>
             {erro && <div style={{ color: "red" }}>{erro}</div>}
-            <form onSubmit={cadastrar}>
+            <form onSubmit={cadastrar()}>
                 <input
                     type="text"
                     placeholder="Nome da categoria"
@@ -45,6 +45,7 @@ export default function NovaCategoria() {
                 <br />
                 <button type="submit">Cadastrar</button>
             </form>
+
         </div>
     )
 }

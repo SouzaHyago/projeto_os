@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-* {
+#cadastro * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Open Sans", serif;
 }
 
-body {
+#cadastro body {
     margin: 4%;
     background: #B3D0B3;
     color: #FFF;
@@ -17,7 +17,7 @@ body {
     min-height: 100vh;
 }
 
-.cadastro {
+#cadastro .cadastro {
     background: #89B789;
     width: 80%;
     max-width: 550px;
@@ -26,7 +26,7 @@ body {
     box-shadow: 20px 20px 10px #444;
 }
 
-.cadastro h1 {
+#cadastro .cadastro h1 {
     text-align: center;
     margin-top: 2%;
     margin-bottom: 10%;
@@ -35,7 +35,7 @@ body {
     font-weight: 600;
 }
 
-.cadastro input {
+#cadastro .cadastro input {
     width: 100%;
     padding: 4%;
     margin-top: 1%;
@@ -46,11 +46,11 @@ body {
     color: #FFF;
 }
 
-.cadastro input::placeholder {
+#cadastro .cadastro input::placeholder {
     color: #D3D3D3;
 }
 
-.cadastro button {
+#cadastro .cadastro button {
     width: 100%;
     padding: 5%;
     border: none;
@@ -64,28 +64,28 @@ body {
     transition: background-color 0.3s ease;
 }
 
-.cadastro button:hover {
+#cadastro .cadastro button:hover {
     background-color: #a6cfa6; 
 }
 
-p {
+#cadastro p {
     text-align: center;
     margin-bottom: 5%;
     margin-top: 2%;
 }
 
-a {
+#cadastro a {
     color: #FFF;
 }
 
-.cadastro .adm-options {
+#cadastro .cadastro .adm-options {
     display: flex;
     gap: 20px;
     margin-top: 10px;
     margin-bottom: 15px;
 }
 
-.cadastro .adm-options label {
+#cadastro .cadastro .adm-options label {
     display: flex;
     gap: 8px;
     background: #5F805F;
