@@ -9,6 +9,8 @@ export default function Carrinho(){
 
     const [carrinho, alteraCarrinho] = useState([])
     const [ adm, alteraAdm ] = useState(0)
+    const [pedidosRecentes, alteraPedidosRecentes] = useState([])
+    const [compraFinalizada, alteraCompraFinalizada] = useState(false)
 
     function buscarCarrinho() {
         const response = JSON.parse(localStorage.getItem('usuario'))
@@ -19,7 +21,8 @@ export default function Carrinho(){
 
     async function finalizarCompra() {
 
-        const local = JSON.parse(localStorage.getItem('usuario'));
+        const local = JSON.parse(localStorage.getItem('usuario'))
+        const novosPedidos = [];
 
         for(let i = 0; i < carrinho.length;i++){
             console.log(carrinho[i])
@@ -34,6 +37,7 @@ export default function Carrinho(){
             }
 
             const response = await axios.post(host+"compras",obj)
+            novosPedidos.push(carrinho[i])
             console.log(response)
         }
 
@@ -44,7 +48,10 @@ export default function Carrinho(){
             id : local.id
 		
 		}))
+        
         buscarCarrinho()
+        alteraPedidosRecentes(novosPedidos)
+        alteraCompraFinalizada(true)
     
     }
 
@@ -118,6 +125,20 @@ export default function Carrinho(){
                     </div>
                 ) : (
                     <p className="text-gray-600 text-lg" >Seu carrinho está vazio 😕</p>
+                )
+            }
+
+            {
+                compraFinalizada && pedidosRecentes.length > 0 && adm == 0 && (
+                    <div className="mt-10 bg-green-100 p-6 rounded-lg shadow-md">
+                        <h3 className="text-xl font-bold text-green-700 mb-2">Seus Pedidos:</h3>
+                        {pedidosRecentes.map(() => (
+                            <div key={index} className="mb-4">
+                                <p className="text-green-900 font-medium">{item.nome}</p>
+                                <p className="text-green-800 text-sm">Quantidade: {item.qtd} • Valor: R$ {item.valor.toFixed(2)}</p>
+                            </div>
+                        ))}
+                    </div>
                 )
             }
 

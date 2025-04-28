@@ -3,7 +3,8 @@ import { useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import Menu from "../components/Menu"
-
+import "./categorias.css"
+import host from "../lib/host"
 
 
 export default function NovaCategoria() {
@@ -20,7 +21,7 @@ export default function NovaCategoria() {
         }
 
         try {
-            await axios.post("http://localhost:3000/api/categorias", { nome })
+            await axios.post(host+"categorias", { nome })
             alert("Categoria cadastrada!")
             router.push("/")
         } catch {
@@ -29,12 +30,12 @@ export default function NovaCategoria() {
     }
 
     return (
-        <div>
+        <div className="categorias">
 
             <Menu/>
             <h1 className="mt-20">Cadastrar Nova Categoria</h1>
             {erro && <div style={{ color: "red" }}>{erro}</div>}
-            <form onSubmit={cadastrar()}>
+            <form onSubmit={()=> cadastrar()}>
                 <input
                     type="text"
                     placeholder="Nome da categoria"
