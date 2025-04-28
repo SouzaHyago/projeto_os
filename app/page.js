@@ -12,67 +12,51 @@ export default function Home() {
 	const [menuAberto, alteraMenuAberto] = useState(false);
 	const [produtoSelecionado, setProdutoSelecionado] = useState(null); 
 	const [carrinho, alteraCarrinho] = useState([]);
-	const [quantidade,alteraQuantidade] = useState(0);
-	const [itemModal,alteraItemModel] = useState({})
-	const [ adm, alteraAdm ] = useState(0)
-	
-	async function verificarAdm(){
+	const [quantidade, alteraQuantidade] = useState(0);
+	const [itemModal, alteraItemModel] = useState({});
+	const [adm, alteraAdm] = useState(0);
 
-		const usuario = JSON.parse(localStorage.getItem('usuario'))
-
+	async function verificarAdm() {
+		const usuario = JSON.parse(localStorage.getItem('usuario'));
 		if (usuario && usuario.adm == 1) {
 			alteraAdm(1)
 		} else {
 			alteraAdm(0)
 		}
-
 	}
 
-	
 	async function buscarProdutos() {
-		const response = await axios.get(host+"itens");
+		const response = await axios.get(host + "itens");
 		alteraProdutos(response.data);
 		alteraMostrando(response.data)
 	}
-	
-	function adicionarNoCarrinho(item){
 
-		let local =  JSON.parse(localStorage.getItem('usuario'));
-
-		console.log(local);
-
+	function adicionarNoCarrinho(item) {
+		let local = JSON.parse(localStorage.getItem('usuario'));
 		let listaTemporaria = local.carrinho;
-		console.log(local.carrinho);
 		listaTemporaria.push(item);
-		 if(quantidade < 1){
+		if (quantidade < 1) {
 			quantidade = 1;
 		}
 		alteraCarrinho(listaTemporaria);
-		console.log(local);
-
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
 			adm: local.adm,
-			carrinho : listaTemporaria,
-			id : local.id
-		
+			carrinho: listaTemporaria,
+			id: local.id
 		}))
-
 		fecharModal();
 	}
-		
 
 	async function buscarCategorias() {
-		const response = await axios.get(host+"categorias");
+		const response = await axios.get(host + "categorias");
 		alteracategorias(response.data);
-		console.log(response.data)
 	}
 
 	function ItensPorCategoria(id) {
 		alteraMostrando([])
 		let temp = [];
 		produtos.forEach(produto => {
-			console.log(produto);
 			if (produto.id_categoria == id) {
 				temp.push(produto);
 			}
@@ -82,7 +66,6 @@ export default function Home() {
 		} else {
 			alteraMostrando(produtos)
 		}
-		console.log(mostrando);
 	}
 
 	function abrirModal(produto) {
@@ -94,15 +77,10 @@ export default function Home() {
 	}
 
 	async function removerItem(id) {
-		const response = await axios.delete(host + "itens/"+id)
-		console.log(response)
+		const response = await axios.delete(host + "itens/" + id)
 		buscarProdutos();
 		fecharModal();
-
 	}
-
-	
-
 
 	useEffect(() => {
 		buscarProdutos()
@@ -112,12 +90,11 @@ export default function Home() {
 
 	return (
 		<div className="p-4">
+			<Menu />
 
-		<Menu/>
-
-		<button onClick={() => alteraMenuAberto(!menuAberto)} className="bg-blue-500 text-white mt-15 px-4 py-2 rounded shadow hover:bg-blue-600 transition">
-			{menuAberto ? 'Esconder categorias' : 'Selecionar categoria'}
-		</button>
+			<button onClick={() => alteraMenuAberto(!menuAberto)} className="bg-blue-500 text-white mt-15 px-4 py-2 rounded shadow hover:bg-blue-600 transition">
+				{menuAberto ? 'Esconder categorias' : 'Selecionar categoria'}
+			</button>
 
 			{
 				menuAberto &&
@@ -143,12 +120,11 @@ export default function Home() {
 						{mostrando.map((i) => (
 							<div
 								key={i.id}
-								className="border max-h-40 mx-5 my-5 rounded-xl shadow p-4 bg-white hover:shadow-md zoom transition-shadow"
-								onClick={() => {alteraItemModel(i);abrirModal(i)}} 
+								className="border h-40 mx-5 my-5 rounded-xl shadow p-4 bg-white hover:shadow-md zoom transition-shadow flex flex-col overflow-hidden"
+								onClick={() => { alteraItemModel(i); abrirModal(i) }}
 							>
-								<h3 className="text-lg font-semibold mb-1">{i.nome}</h3>
-								<p className="text-sm text-gray-600">{i.descricao}</p>
-								
+								<h3 className="text-lg font-semibold mb-1 truncate">{i.nome}</h3>
+								<p className="text-sm text-gray-600 overflow-hidden overflow-ellipsis whitespace-nowrap">{i.descricao}</p>
 							</div>
 						))}
 					</div>
@@ -156,7 +132,6 @@ export default function Home() {
 					:
 					<p>carregando...</p>
 			}
-
 
 			{/* Modal com detalhes do produto */}
 			{produtoSelecionado && (
@@ -170,37 +145,28 @@ export default function Home() {
 						<p className="text-lg mb-2">{produtoSelecionado.descricao}</p>
 						<p className="text-xl font-semibold">R$ {produtoSelecionado.valor}</p>
 
-						{ adm == 1 ?
-						
+						{adm == 1 ?
+
 							<div>
-								<button onClick={()=> removerItem(produtoSelecionado.id)} className='border p-4'>remover</button>
+								<button onClick={() => removerItem(produtoSelecionado.id)} className='border p-4'>remover</button>
 							</div>
-						
-						:
+
+							:
 							<div>
 								<label htmlFor="">quantidade </label>
-								<input className='border' placeholder={"digite uma quantidade"} onChange={(e)=> alteraQuantidade(e.value)} type="number" min={0}/>
+								<input className='border' placeholder={"digite uma quantidade"} onChange={(e) => alteraQuantidade(e.target.value)} type="number" min={0} />
 								<button
-									onClick={() => {adicionarNoCarrinho(itemModal)}}
+									onClick={() => { adicionarNoCarrinho(itemModal) }}
 									className="mt-2 bg-green-500 text-white px-4 py-2 rounded shadow hover:bg-green-600 transition"
 								>
 									Adicionar ao Carrinho
 								</button>
 							</div>
-						
+
 						}
-
-
-						
 					</div>
 				</div>
 			)}
-
-
 		</div>
 	);
 }
-
-
-
-
