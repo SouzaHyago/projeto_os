@@ -94,21 +94,22 @@ export default function Home() {
 			<Menu />
 
 			<div className="flex flex-wrap items-center gap-4 mb-6">
-				<button 
-					onClick={() => alteraMenuAberto(!menuAberto)} 
-					className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow transition-all"
-				>
-					{menuAberto ? 'Esconder Categorias' : 'Selecionar Categoria'}
-				</button>
+			<button 
+    onClick={() => alteraMenuAberto(!menuAberto)} 
+    className="bg-green-200/30 hover:bg-green-300/40 text-green-800 px-6 py-3 rounded-lg font-semibold shadow-lg backdrop-blur-2xl border border-white/20 transition-all mt-8"
+>
+    {menuAberto ? 'Esconder Categorias' : 'Selecionar Categoria'}
+			</button>
 
-				{menuAberto && (
-					<button 
-						onClick={() => alteraMostrando(produtos)} 
-						className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold shadow transition-all"
-					>
-						Mostrar Todos
-					</button>
-				)}
+	{menuAberto && (
+   		 <button 
+        onClick={() => alteraMostrando(produtos)} 
+        className="bg-green-200/30 hover:bg-green-300/40 text-green-800 px-6 py-3 rounded-lg font-semibold shadow-lg backdrop-blur-2xl border border-white/20 transition-all"
+    >
+        Mostrar Todos
+   		 </button>
+		)}
+			
 			</div>
 
 			<div className={`overflow-hidden transition-all duration-500 ease-in-out ${menuAberto ? 'max-h-[1000px] mt-4' : 'max-h-0'}`}>
