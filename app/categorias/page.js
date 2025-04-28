@@ -29,7 +29,7 @@ export default function NovaCategoria() {
     }
 
     return (
-        <div id="categorias" className="categorias">
+        <div className="categorias">
 
             <Menu/>
             <h1 className="mt-20" >Cadastrar Nova Categoria</h1>

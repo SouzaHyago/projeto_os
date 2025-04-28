@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-#paginalogin * {
+.login * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Open Sans", serif;
 }
 
-#paginalogin body {
+body {
     background: #B3D0B3;
     color: #FFF;
     display: flex;
@@ -16,7 +16,7 @@
     min-height: 100vh;
 }
 
-#paginalogin .login {
+.login {
     background: #89B789;
     width: 80%;
     max-width: 550px;
@@ -25,7 +25,7 @@
     box-shadow: 20px 20px 10px #444;
 }
 
-#paginalogin .login h1 {
+.login h1 {
     margin-top: 5%;
     margin-bottom: 15%;
     color: #FFF;
@@ -34,7 +34,7 @@
     font-weight: 600;
 }
 
-#paginalogin .login input {
+.login input {
     width: 100%;
     padding: 5%;
     margin-top: 1%;
@@ -45,11 +45,11 @@
     color: #FFF;
 }
 
-#paginalogin .login input::placeholder {
+.login input::placeholder {
     color: #D3D3D3;
 }
 
-#paginalogin .login button {
+.login button {
     width: 100%;
     padding: 5%;
     border: none;
@@ -62,16 +62,16 @@
     transition: background-color 0.3s ease;
 }
 
-#paginalogin .login button:hover {
+.login button:hover {
     background-color: #a6cfa6;
 }
 
-#paginalogin p {
+.login p {
     text-align: center;
     margin-bottom: 10%;
     margin-top: 5%;
 }
 
-#paginalogin a {
+.login a {
     color: #FFF;
 }

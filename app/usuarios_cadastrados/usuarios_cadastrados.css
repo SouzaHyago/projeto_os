@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-#usuarios body {
+body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f7fb;
     margin: 0;
@@ -11,7 +11,7 @@
     min-height: 100vh;
 }
 
-#usuarios .container {
+.usuarios {
     width: 85%;
     max-width: 1200px;
     background-color: white;
@@ -21,11 +21,11 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-#usuarios .menu h1{
+.usuarios .menu h1{
     color: #FFF;
 }
 
-#usuarios h1 {
+.usuarios h1 {
     color: #2d6a4f;
     text-align: center;
     margin-bottom: 30px;
@@ -33,7 +33,7 @@
     font-weight: 600;
 }
 
-#usuarios table {
+.usuarios table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -41,49 +41,49 @@
     overflow: hidden;
 }
 
-#usuarios th, td {
+.usuarios th, td {
     padding: 15px;
     text-align: left;
     border: 1px solid #e0e0e0;
     transition: background-color 0.3s ease;
 }
 
-#usuarios th {
+.usuarios th {
     background-color: #658b67;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
 }
 
-#usuarios td {
+.usuarios td {
     background-color: #fafafa;
     color: #333;
     font-weight: 300;
 }
 
-#usuarios tr:nth-child(even) td {
+.usuarios tr:nth-child(even) td {
     background-color: #f1f9f4;
 }
 
-#usuarios tr:nth-child(odd) td {
+.usuarios tr:nth-child(odd) td {
     background-color: #ffffff;
 }
 
-#usuarios tr:hover td {
+.usuarios tr:hover td {
     background-color: #d1e8d1;
 }
 
-#usuarios tr td {
+.usuarios tr td {
     font-size: 16px;
     font-weight: 400;
 }
 
 /* Efeito de hover na linha */
-#usuarios table tr:hover {
+.usuarios table tr:hover {
     background-color: rgba(72, 182, 118, 0.2);
 }
 
-#usuarios .loading {
+.usuarios .loading {
     text-align: center;
     font-size: 24px; 
     color: #2d6a4f;

@@ -53,7 +53,7 @@ function Login() {
     }, []);
 
     return ( 
-        <div id="paginalogin" className="login">
+        <div className="login">
 
             <h1>Login</h1>
 

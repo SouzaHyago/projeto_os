@@ -1,38 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-#landing *{
+.landing *{
     margin: 0;
     padding: 0;
 }
 
-#landing html{
+html{
     scroll-behavior: smooth;
 }
 
-#landing a{
+.landing a{
     text-decoration: none;
 }
 
-#landing body{
+body{
     font-family: "Open Sans", serif;
     background: #1D2027;
     color: #F6F7F6;
 }
 
-#landing header{
+.landing header{
     display: flex;
     justify-content: space-between;
     padding: 2.5rem 2rem;
     
 }
 
-#landing header ul{
+.landing header ul{
     display: flex;
     justify-items: end;
     list-style-type: none;
 }
 
-#landing header li{
+.landing header li{
     margin-right: 2.5rem;
     cursor: pointer;
     height: 2rem;
@@ -41,7 +41,7 @@
 
 }
 
-#landing header li:hover{
+.landing header li:hover{
     background-color: #2c313d;
     transition: 0.3s;
     border: solid 1px white;
@@ -49,34 +49,33 @@
 
 }
 
-#landing header a{
+.landing header a{
     color: #F6F7F6;
 }
 
-#landing header a:hover{
+.landing header a:hover{
     transition: 0.3s;
     color: #1B87EA;
 
 }
 
-
-#landing .mainContent{
+.landing .mainContent{
     margin: 14rem 0rem 0rem 3rem;
     font-size: 2rem;
 }
 
-#landing .mainContent ul{
+.landing .mainContent ul{
     list-style: none;
     display: flex;
     margin-top: 4rem;
     margin-right: 4rem;
 }
 
-#landing .mainContent li{
+.landing .mainContent li{
     padding-right: 2rem;
 }
 
-#landing .mainContent a{
+.landing .mainContent a{
     border-radius: 5px;
     padding: 0.65rem 0.55rem 0.6rem 0.40rem;
     cursor: pointer;
@@ -89,28 +88,28 @@
     text-decoration: none;
 }
 
-#landing .mainContent a:hover{
+.landing .mainContent a:hover{
    transition: 0.3s;
    background-color: #115ca1;
    color: #F6F7F6;
 }
 
-#landing .destaque{
+.landing .destaque{
     color: #1B87EA;
 }
 
-#landing #saibaMais{
+.landing #saibaMais{
     margin: 14rem 3rem 2rem 3rem;
     font-size: 2rem;
 }
 
-#landing .cards{
+.landing .cards{
     display: flex;
     justify-content: space-between;
 
 }
 
-#landing .card{
+.landing .card{
     width: 450px;
     background-color: #F6F7F6;
     color: #1B87EA;
@@ -118,11 +117,11 @@
    
 }
 
-#landing .card .text{
+.landing .card .text{
     padding: 1vh 3vh;
 }
 
-#landing .mapContainer{
+.landing .mapContainer{
     margin-top: 300px;
 
     display: flex;

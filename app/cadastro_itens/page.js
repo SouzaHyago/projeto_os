@@ -52,7 +52,7 @@ function CadastroItens() {
     }, [])
 
     return (
-        <div id="cadastro_itens" className="cadastro_produtos">
+        <div className="cadastro_produtos">
             <Menu/>
 
             <h1>Cadastro de Itens</h1>

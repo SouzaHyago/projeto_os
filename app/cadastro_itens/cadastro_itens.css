@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-#cadastro_itens * {
+.cadastro_produtos * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Open Sans", serif;
 }
 
-#cadastro_itens body {
+body {
     background: #B3D0B3;
     color: #FFF;
     display: flex;
@@ -16,7 +16,7 @@
     min-height: 100vh;
 }
 
-#cadastro_itens .cadastro_produtos {
+.cadastro_produtos {
     background: #89B789;
     width: 80%;
     max-width: 550px;
@@ -25,7 +25,7 @@
     box-shadow: 20px 20px 10px #444;
 }
 
-#cadastro_itens .cadastro_produtos h1 {
+.cadastro_produtos h1 {
     text-align: center;
     margin-top: 2%;
     margin-bottom: 10%;
@@ -34,7 +34,7 @@
     font-weight: 600;
 }
 
-#cadastro_itens .cadastro_produtos input {
+.cadastro_produtos input {
     width: 100%;
     padding: 5%;
     margin-top: 1%;
@@ -45,11 +45,11 @@
     color: #FFF;
 }
 
-#cadastro_itens .cadastro_produtos input::placeholder {
+.cadastro_produtos input::placeholder {
     color: #D3D3D3;
 }
 
-#cadastro_itens select {
+.cadastro_produtos select {
     width: 100%;
     padding: 4.6%;
     border-radius: 5px;
@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-#cadastro_itens .cadastro_produtos button {
+.cadastro_produtos button {
     width: 100%;
     padding: 5%;
     border: none;
@@ -75,6 +75,6 @@
     transition: background-color 0.3s ease;
 }
 
-#cadastro_itens .cadastro_produtos button:hover {
+.cadastro_produtos button:hover {
     background-color: #a6cfa6; 
 }

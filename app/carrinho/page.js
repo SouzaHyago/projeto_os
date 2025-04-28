@@ -1,14 +1,14 @@
 'use client'
 
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import host from "../lib/host"
 import Menu from "../components/Menu"
 
 export default function Carrinho(){
 
     const [carrinho, alteraCarrinho] = useState([])
-    
+    const [ adm, alteraAdm ] = useState(0)
 
     function buscarCarrinho() {
         const response = JSON.parse(localStorage.getItem('usuario'))
@@ -19,9 +19,7 @@ export default function Carrinho(){
 
     async function finalizarCompra() {
 
-
         const local = JSON.parse(localStorage.getItem('usuario'));
-
 
         for(let i = 0; i < carrinho.length;i++){
             console.log(carrinho[i])
@@ -37,7 +35,7 @@ export default function Carrinho(){
 
             const response = await axios.post(host+"compras",obj)
             console.log(response)
-        };
+        }
 
         localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
@@ -46,10 +44,7 @@ export default function Carrinho(){
             id : local.id
 		
 		}))
-        buscarCarrinho();
-
-
-
+        buscarCarrinho()
     
     }
 
@@ -78,8 +73,21 @@ export default function Carrinho(){
         buscarCarrinho();
     }
 
+    async function verificarAdm(){
+
+        const usuario = JSON.parse(localStorage.getItem('usuario'))
+
+        if (usuario && usuario.adm == 1) {
+            alteraAdm(1)
+        } else {
+            alteraAdm(0)
+        }
+
+    }
+
     useEffect(() => {
         buscarCarrinho()
+        verificarAdm()
     }, [])
 
     return (
@@ -112,6 +120,8 @@ export default function Carrinho(){
                     <p className="text-gray-600 text-lg" >Seu carrinho está vazio 😕</p>
                 )
             }
+
+            
         </div>
     )
 }

@@ -71,7 +71,7 @@ function Cadastro() {
 
     return (
 
-        <div id="cadastro"  className="cadastro">
+        <div className="cadastro">
 
             <Menu/>
             
