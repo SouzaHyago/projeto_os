@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-* {
+.cadastro_produtos * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -49,7 +49,7 @@ body {
     color: #D3D3D3;
 }
 
-select {
+.cadastro_produtos select {
     width: 100%;
     padding: 4.6%;
     border-radius: 5px;

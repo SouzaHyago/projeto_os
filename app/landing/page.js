@@ -9,7 +9,7 @@ import { useEffect } from "react"
 export default function Landing(){
 
     return(
-        <div>
+        <div className="landing">
             <header>
                 <img src="https://placehold.co/200x80" className={"nomeMarca"}/>
                 <ul className={"menu"}>

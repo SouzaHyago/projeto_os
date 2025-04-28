@@ -19,7 +19,7 @@ function Usuarios() {
     }, []);
 
     return (
-        <div className="container" >
+        <div className="usuarios" >
 
             <div className="menu">
                 <Menu/>

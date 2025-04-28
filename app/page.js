@@ -35,11 +35,14 @@ export default function Home() {
 	function adicionarNoCarrinho(item) {
 		let local = JSON.parse(localStorage.getItem('usuario'));
 		let listaTemporaria = local.carrinho;
+		console.log(local.carrinho);
 		listaTemporaria.push(item);
-		if (quantidade < 1) {
+		 if(quantidade < 1){
 			quantidade = 1;
 		}
 		alteraCarrinho(listaTemporaria);
+		console.log(local);
+
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
 			adm: local.adm,
@@ -173,17 +176,12 @@ export default function Home() {
 									Remover Produto
 								</button>
 							</div>
-						) : (
-							<div className="flex flex-col gap-2">
-								<label className="text-gray-700">Quantidade</label>
-								<input 
-									className="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-									placeholder="Digite uma quantidade"
-									onChange={(e) => alteraQuantidade(e.target.value)} 
-									type="number" 
-									min={0} 
-								/>
-								<button 
+
+							:
+							<div>
+								<label htmlFor="">quantidade </label>
+								<input className='border' placeholder={"digite uma quantidade"} onChange={(e) => alteraQuantidade(e.target.value)} type="number" min={0} />
+								<button
 									onClick={() => { adicionarNoCarrinho(itemModal) }}
 									className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold mt-2"
 								>

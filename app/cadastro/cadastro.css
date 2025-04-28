@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-* {
+.cadastro * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -68,13 +68,13 @@ body {
     background-color: #a6cfa6; 
 }
 
-p {
+.cadastro p {
     text-align: center;
     margin-bottom: 5%;
     margin-top: 2%;
 }
 
-a {
+.cadastro a {
     color: #FFF;
 }
 

@@ -1,14 +1,14 @@
 'use client'
 
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { use, useEffect, useState } from "react"
 import host from "../lib/host"
 import Menu from "../components/Menu"
 
 export default function Carrinho(){
 
     const [carrinho, alteraCarrinho] = useState([])
-    
+    const [ adm, alteraAdm ] = useState(0)
 
     function buscarCarrinho() {
         const response = JSON.parse(localStorage.getItem('usuario'))
@@ -19,9 +19,7 @@ export default function Carrinho(){
 
     async function finalizarCompra() {
 
-
         const local = JSON.parse(localStorage.getItem('usuario'));
-
 
         for(let i = 0; i < carrinho.length;i++){
             console.log(carrinho[i])
@@ -31,13 +29,13 @@ export default function Carrinho(){
                 id_usuario : local.id,
                 stats : 1,
                 descricao: "",
-                quantidade : carrinho[i].quantidade,
+                quantidade : carrinho[i].qtd,
                 valorItem : carrinho[i].valor
             }
 
             const response = await axios.post(host+"compras",obj)
             console.log(response)
-        };
+        }
 
         localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
@@ -46,10 +44,7 @@ export default function Carrinho(){
             id : local.id
 		
 		}))
-        buscarCarrinho();
-
-
-
+        buscarCarrinho()
     
     }
 
@@ -78,8 +73,21 @@ export default function Carrinho(){
         buscarCarrinho();
     }
 
+    async function verificarAdm(){
+
+        const usuario = JSON.parse(localStorage.getItem('usuario'))
+
+        if (usuario && usuario.adm == 1) {
+            alteraAdm(1)
+        } else {
+            alteraAdm(0)
+        }
+
+    }
+
     useEffect(() => {
         buscarCarrinho()
+        verificarAdm()
     }, [])
 
     return (
@@ -97,7 +105,7 @@ export default function Carrinho(){
                                     <h3 className="text-xl font-semibold text-gray-900">{item.nome}</h3>
                                     <p className="text-gray-700 mt-1">{item.descricao}</p>
                                     <p className="text-green-600 font-bold mt-2">R$ {item.valor.toFixed(2)}</p>
-                                    <p className="text-sm text-gray-500 mt-1">Quantidade: {item.quantidade}</p>
+                                    <p className="text-sm text-gray-500 mt-1">Quantidade: {item.qtd}</p>
                                 </div>
                                 <button onClick={()=> removerItem(item)} className="mt-4 md:mt-0 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
                                     Remover
@@ -112,6 +120,8 @@ export default function Carrinho(){
                     <p className="text-gray-600 text-lg" >Seu carrinho está vazio 😕</p>
                 )
             }
+
+            
         </div>
     )
 }
