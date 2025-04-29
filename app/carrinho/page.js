@@ -64,7 +64,7 @@ export default function Carrinho(){
 		console.log(local.carrinho)
 
         for(let i = 0; i < listaTemporaria.length;i++){
-            if(listaTemporaria[0].id == item.id){
+            if(listaTemporaria[i].id == item.id){
                 listaTemporaria.splice(i,1);
             }
         }

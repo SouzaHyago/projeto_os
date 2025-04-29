@@ -8,7 +8,6 @@
 }
 
 body {
-    margin: 4%;
     background: #B3D0B3;
     color: #FFF;
     display: flex;
@@ -18,6 +17,7 @@ body {
 }
 
 .cadastro {
+    margin: 4%;
     background: #89B789;
     width: 80%;
     max-width: 550px;
