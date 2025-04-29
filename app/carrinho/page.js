@@ -64,7 +64,7 @@ export default function Carrinho(){
 		console.log(local.carrinho)
 
         for(let i = 0; i < listaTemporaria.length;i++){
-            if(listaTemporaria[0].id == item.id){
+            if(listaTemporaria[i].id == item.id){
                 listaTemporaria.splice(i,1);
             }
         }
@@ -137,7 +137,8 @@ export default function Carrinho(){
                         {pedidosRecentes.map((item, i) => (
                             <div className="mb-4" key={i}>
                                 <p className="text-green-900 font-medium">{item.nome}</p>
-                                <p className="text-green-800 text-sm">Quantidade: {item.qtd} • Valor: R$ {item.valor.toFixed(2)}</p>
+                                <p className="text-green-800 text-sm">Quantidade: {item.qtd}</p>
+                                <p className="text-green-800 text-sm">Valor: R$ {item.valor.toFixed(2)}</p>
                             </div>
                         ))}
                     </div>
