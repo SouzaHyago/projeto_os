@@ -137,7 +137,7 @@ export default function Carrinho(){
                         {pedidosRecentes.map((item, i) => (
                             <div className="mb-4" key={i}>
                                 <p className="text-green-900 font-medium">{item.nome}</p>
-                                <p className="text-green-800 text-sm">Quantidade: {item.qtd} • Valor: R$ {item.valor.toFixed(2)}</p>
+                                <p className="text-green-800 text-sm">Quantidade: {item.qtd}</p>
                                 <p className="text-green-800 text-sm">Valor: R$ {item.valor.toFixed(2)}</p>
                             </div>
                         ))}
