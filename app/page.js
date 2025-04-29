@@ -36,8 +36,11 @@ export default function Home() {
 		let local = JSON.parse(localStorage.getItem('usuario'));
 		let listaTemporaria = local.carrinho;
 		listaTemporaria.push(item);
+		console.log(quantidade)
 		if (quantidade < 1) {
-			quantidade = 1;
+			item['qtd'] = 1;
+		}else{
+			item['qtd'] = parseInt( quantidade);
 		}
 		alteraCarrinho(listaTemporaria);
 		localStorage.setItem('usuario', JSON.stringify({
