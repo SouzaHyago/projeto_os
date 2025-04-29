@@ -11,11 +11,11 @@ import Menu from "../components/Menu"
 function CadastroItens() {
 
     const [categoria, alteraCategoria] = useState("")
-    const [nome, alteraNome] = useState([])
-    const [ imagem, alteraImagem ] = useState([])
-    const [descricao, alteraDescricao] = useState([])
-    const [valor, alteraValor] = useState([]);
-    const [categorias, alteraCategorias] = useState([])
+    const [nome, alteraNome] = useState("")
+    const [ imagem, alteraImagem ] = useState("")
+    const [descricao, alteraDescricao] = useState("")
+    const [valor, alteraValor] = useState(0);
+    const [categorias, alteraCategorias] = useState("")
 
     async function cadastroItens() {
 

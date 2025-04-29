@@ -9,7 +9,8 @@ export async function GET(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
-    const id = params.id
+    const id = (await params).id
+    console.log(id);
     const body = await request.json()
     const { nome, imagem, descricao, valor, id_categoria } = body
 
@@ -18,7 +19,7 @@ export async function PUT(request, { params }) {
         SET nome = ?, imagem = ?, descricao = ?, valor = ?, id_categoria = ?
         WHERE id = ?;
     `
-    await conexao.execute(query, [nome, imagem, descricao, valor, id_categoria, id])
+    await conexao.execute(query, [nome, imagem, descricao, valor, id_categoria,id])
 
     return new Response(JSON.stringify({ msg: "Item atualizado com sucesso!" }), { status: 200 })
 }
