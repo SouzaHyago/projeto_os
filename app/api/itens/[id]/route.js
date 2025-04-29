@@ -11,14 +11,14 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
     const id = params.id
     const body = await request.json()
-    const { nome, descricao, valor, id_categoria } = body
+    const { nome, imagem, descricao, valor, id_categoria } = body
 
     const query = `
         UPDATE itens 
-        SET nome = ?, descricao = ?, valor = ?, id_categoria = ?
+        SET nome = ?, imagem = ?, descricao = ?, valor = ?, id_categoria = ?
         WHERE id = ?;
     `
-    await conexao.execute(query, [nome, descricao, valor, id_categoria, id])
+    await conexao.execute(query, [nome, imagem, descricao, valor, id_categoria, id])
 
     return new Response(JSON.stringify({ msg: "Item atualizado com sucesso!" }), { status: 200 })
 }

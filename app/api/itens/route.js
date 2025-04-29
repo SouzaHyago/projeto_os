@@ -17,11 +17,12 @@ export async function POST(request) {
     try {
         const body = await request.json()
 
-        const query = `INSERT INTO itens(id_categoria, nome, descricao, valor) VALUES (?, ?, ?, ?);`
+        const query = `INSERT INTO itens(id_categoria, nome, imagem, descricao, valor) VALUES (?, ?, ?, ?, ?);`
 
         const [results] = await conectar.execute(query, [
             body.id_categoria,
             body.nome,
+            body.imagem,
             body.descricao,
             body.valor
         ])

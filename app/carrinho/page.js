@@ -32,9 +32,11 @@ export default function Carrinho(){
                 id_usuario : local.id,
                 stats : 1,
                 descricao: "",
-                quantidade : carrinho[i].qtd,
+                qtd : carrinho[i].qtd,
                 valorItem : carrinho[i].valor
             }
+
+            console.log(obj)
 
             const response = await axios.post(host+"compras",obj)
             novosPedidos.push(carrinho[i])

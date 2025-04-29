@@ -16,8 +16,8 @@ export async function POST(request) {
             body.id_usuario,
             body.stats,
             body.descricao,
-            body.quantidade,
-            body.valorItem * body.quantidade
+            body.qtd,
+            body.valorItem * body.qtd
         ]
     );
 

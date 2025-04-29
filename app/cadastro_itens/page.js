@@ -1,20 +1,21 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import "./cadastro_itens.css"
-import axios from "axios";
-import host from "../lib/host";
-import Menu from "../components/Menu";
+import axios from "axios"
+import host from "../lib/host"
+import Menu from "../components/Menu"
 
 function CadastroItens() {
 
-    const [categoria, alteraCategoria] = useState("");
-    const [nome, alteraNome] = useState([]);
-    const [descricao, alteraDescricao] = useState([]);
+    const [categoria, alteraCategoria] = useState("")
+    const [nome, alteraNome] = useState([])
+    const [ imagem, alteraImagem ] = useState([])
+    const [descricao, alteraDescricao] = useState([])
     const [valor, alteraValor] = useState([]);
-    const [categorias, alteraCategorias] = useState([]);
+    const [categorias, alteraCategorias] = useState([])
 
     async function cadastroItens() {
 
@@ -24,6 +25,7 @@ function CadastroItens() {
         const obj = {
             id_categoria: categoria,
             nome: nome,
+            imagem: imagem,
             descricao: descricao,
             valor: valorLocal
         };
@@ -33,7 +35,8 @@ function CadastroItens() {
             console.log(response)
 
             alteraCategoria("")
-            alteraNome("");
+            alteraNome("")
+            alteraImagem("")
             alteraDescricao("")
             alteraValor("")
 
@@ -71,6 +74,10 @@ function CadastroItens() {
                 <label>Nome do produto<br />
                     <input required placeholder="Digite o nome do produto" onChange={(e) => alteraNome(e.target.value)} value={nome} />
                 </label>
+
+                <label>Imagem<br />
+                    <input required placeholder="Coloque o link da imagem do produto" onChange={(e) => alteraImagem(e.target.value)} value={imagem} />
+                </label> <br/>
 
                 <label>Descrição<br />
                     <input required placeholder="Digite a descrição do produto" onChange={(e) => alteraDescricao(e.target.value)} value={descricao} />
