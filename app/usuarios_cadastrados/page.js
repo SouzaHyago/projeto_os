@@ -4,13 +4,14 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import './usuarios_cadastrados.css'
 import Menu from "../components/Menu"
+import host from "../lib/host"
 
 function Usuarios() {
 
     const [usuarios, alteraUsuarios] = useState([])
 
     async function buscaTodos() {
-        const response = await axios.get("http://localhost:3000/api/usuarios")
+        const response = await axios.get(host+"usuarios")
         alteraUsuarios(response.data)
     }
 
