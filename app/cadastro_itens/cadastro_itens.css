@@ -9,7 +9,6 @@
 
 body {
     background: #B3D0B3;
-    color: #FFF;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +17,7 @@ body {
 
 .cadastro_produtos {
     background: #89B789;
+    color: #FFF;
     margin: 4%;
     width: 80%;
     max-width: 550px;

@@ -9,7 +9,6 @@
 
 body {
     background: #B3D0B3;
-    color: #FFF;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +17,7 @@ body {
 
 .login {
     background: #89B789;
+    color: #FFF;
     width: 80%;
     max-width: 550px;
     padding: 4%;
