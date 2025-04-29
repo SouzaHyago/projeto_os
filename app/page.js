@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Menu from './components/Menu'
 import host from './lib/host';
-import Link from 'next/link';
 
 export default function Home() {
 
@@ -35,6 +34,19 @@ export default function Home() {
 	function adicionarNoCarrinho(item) {
 		let local = JSON.parse(localStorage.getItem('usuario'));
 		let listaTemporaria = local.carrinho;
+		for(let i = 0; i < listaTemporaria.length;i++){
+			if(listaTemporaria[i].id == item.id){
+				listaTemporaria[i].qtd += quantidade < 1 ? 1 : parseInt(quantidade);
+				localStorage.setItem('usuario', JSON.stringify({
+					email: local.email,
+					adm: local.adm,
+					carrinho: listaTemporaria,
+					id: local.id
+				}))
+				fecharModal();
+				return;
+			}
+		}
 		listaTemporaria.push(item);
 		console.log(quantidade)
 		if (quantidade < 1) {
@@ -42,7 +54,6 @@ export default function Home() {
 		}else{
 			item['qtd'] = parseInt( quantidade);
 		}
-		alteraCarrinho(listaTemporaria);
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
 			adm: local.adm,
