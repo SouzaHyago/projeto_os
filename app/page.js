@@ -47,7 +47,8 @@ export default function Home() {
 			email: local.email,
 			adm: local.adm,
 			carrinho: listaTemporaria,
-			id: local.id
+			id: local.id,
+			pedidos: local.pedidos
 		}))
 		fecharModal();
 	}
