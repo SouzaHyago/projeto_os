@@ -50,6 +50,21 @@ function CadastroItens() {
         alteraCategorias(response.data)
     }
 
+    function formataValor(input){
+        let numeros = input.replace(/\D/g,'');
+        if(numeros.length === 0){
+            return '';
+        }
+        let numFormatado = parseFloat(numeros)/100;
+
+        return numFormatado.toFixed(2);
+    }
+
+    function inputValor(val){
+        let numFormatado = formataValor(val);
+        alteraValor(numFormatado);
+    }
+
     useEffect(() => {
         buscaCategorias()
     }, [])
@@ -84,7 +99,7 @@ function CadastroItens() {
                 </label> <br/>
 
                 <label>Valor<br />
-                    <input required placeholder="Digite o valor" onChange={(e) => alteraValor(e.target.value)} value={valor} />
+                    <input required placeholder="0.00" inputMode='numeric' onChange={(e) => inputValor(e.target.value)} value={valor} />
                 </label>
 
                 <br/>
