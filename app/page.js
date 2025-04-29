@@ -148,7 +148,7 @@ export default function Home() {
 							<div 
 								key={i.id}
 								onClick={() => { alteraItemModel(i); abrirModal(i) }}
-								className="bg-white border rounded-xl shadow-lg hover:shadow-2xl transition-all p-4 cursor-pointer flex flex-col justify-between h-52"
+								className="bg-white border rounded-xl shadow-lg hover:shadow-2xl transition-all p-4 cursor-pointer flex flex-col justify-between"
 								style={{ boxShadow: '0 4px 12px rgba(0, 128, 0, 0.2)' }} 
 							>
 								<h3 className="text-xl font-bold text-gray-800 truncate">{i.nome}</h3>
