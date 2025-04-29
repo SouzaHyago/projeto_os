@@ -9,7 +9,6 @@ import host from "../lib/host"
 
 export default function NovaCategoria() {
     const [nome, setNome] = useState("")
-    const [erro, setErro] = useState(null)
     const router = useRouter()
 
     async function cadastrar(e) {
@@ -22,10 +21,8 @@ export default function NovaCategoria() {
 
         try {
             await axios.post(host+"categorias", { nome })
-            alert("Categoria cadastrada!")
             router.push("/")
         } catch {
-            setErro("Erro ao cadastrar a categoria.")
         }
     }
 
@@ -35,7 +32,7 @@ export default function NovaCategoria() {
             <Menu/>
             <h1 className="mt-20">Cadastrar Nova Categoria</h1>
             {erro && <div style={{ color: "red" }}>{erro}</div>}
-            <form onSubmit={()=> cadastrar()}>
+            <form onSubmit={(e)=> cadastrar(e)}>
                 <input
                     type="text"
                     placeholder="Nome da categoria"

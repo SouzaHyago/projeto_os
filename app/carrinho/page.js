@@ -1,99 +1,90 @@
 'use client'
 
 import axios from "axios"
-import { use, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import host from "../lib/host"
 import Menu from "../components/Menu"
 
 export default function Carrinho(){
 
     const [carrinho, alteraCarrinho] = useState([])
-    const [ adm, alteraAdm ] = useState(0)
+    const [adm, alteraAdm] = useState(0)
     const [pedidosRecentes, alteraPedidosRecentes] = useState([])
-    
+
     function buscarCarrinho() {
         const response = JSON.parse(localStorage.getItem('usuario'))
-        if (response.carrinho) {
+        if (response?.carrinho) {
             alteraCarrinho(response.carrinho)
         }
-        if(response.pedidos){
+        if (response?.pedidos) {
             alteraPedidosRecentes(response.pedidos)
         }
     }
 
     async function finalizarCompra() {
-
         const local = JSON.parse(localStorage.getItem('usuario'))
-        let novosPedidos = local.pedidos;
+        let novosPedidos = local.pedidos || [] // ✅ Correção aqui
 
-        for(let i = 0; i < carrinho.length;i++){
+        for (let i = 0; i < carrinho.length; i++) {
             console.log(carrinho[i])
 
             const obj = {
-                id_item : carrinho[i].id,
-                id_usuario : local.id,
-                stats : 1,
+                id_item: carrinho[i].id,
+                id_usuario: local.id,
+                stats: 1,
                 descricao: "",
-                qtd : carrinho[i].qtd,
-                valorItem : carrinho[i].valor
+                qtd: carrinho[i].qtd,
+                valorItem: carrinho[i].valor
             }
 
             console.log(obj)
 
-            const response = await axios.post(host+"compras",obj)
+            const response = await axios.post(host + "compras", obj)
 
             novosPedidos.push(carrinho[i])
             console.log(response)
-            
+
             localStorage.setItem('usuario', JSON.stringify({
                 email: local.email,
                 adm: local.adm,
-                carrinho : [],
-                id : local.id,
+                carrinho: [],
+                id: local.id,
                 pedidos: novosPedidos
             }))
         }
-        
 
         localStorage.setItem('usuario', JSON.stringify({
-			email: local.email,
-			adm: local.adm,
-			carrinho : [],
-            id : local.id,
+            email: local.email,
+            adm: local.adm,
+            carrinho: [],
+            id: local.id,
             pedidos: novosPedidos
-		}))
+        }))
 
         buscarCarrinho()
-    
     }
 
-    async function removerItem(item){
-        let local = await JSON.parse(localStorage.getItem('usuario'));
-		let listaTemporaria = local.carrinho
+    async function removerItem(item) {
+        let local = JSON.parse(localStorage.getItem('usuario'))
+        let listaTemporaria = local.carrinho
 
-		console.log(local.carrinho)
-
-        for(let i = 0; i < listaTemporaria.length;i++){
-            if(listaTemporaria[i].id == item.id){
-                listaTemporaria.splice(i,1);
+        for (let i = 0; i < listaTemporaria.length; i++) {
+            if (listaTemporaria[i].id == item.id) {
+                listaTemporaria.splice(i, 1)
             }
         }
 
+        localStorage.setItem('usuario', JSON.stringify({
+            email: local.email,
+            adm: local.adm,
+            carrinho: listaTemporaria,
+            id: local.id
+        }))
 
-
-		localStorage.setItem('usuario', JSON.stringify({
-			email: local.email,
-			adm: local.adm,
-			carrinho : listaTemporaria,
-            id : local.id
-		
-		}))
-
-        buscarCarrinho();
+        buscarCarrinho()
     }
 
-    async function verificarAdm(){
-
+    function verificarAdm() {
         const usuario = JSON.parse(localStorage.getItem('usuario'))
 
         if (usuario && usuario.adm == 1) {
@@ -101,7 +92,6 @@ export default function Carrinho(){
         } else {
             alteraAdm(0)
         }
-
     }
 
     useEffect(() => {
@@ -111,8 +101,7 @@ export default function Carrinho(){
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">
-
-            <Menu/>
+            <Menu />
             <h1 className="text-3xl mt-10 font-bold mb-6 text-gray-800">🛒 Carrinho de Compras</h1>
 
             {
@@ -126,22 +115,22 @@ export default function Carrinho(){
                                     <p className="text-green-600 font-bold mt-2">R$ {item.valor.toFixed(2)}</p>
                                     <p className="text-sm text-gray-500 mt-1">Quantidade: {item.qtd}</p>
                                 </div>
-                                <button onClick={()=> removerItem(item)} className="mt-4 md:mt-0 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                                <button onClick={() => removerItem(item)} className="mt-4 md:mt-0 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
                                     Remover
                                 </button>
                             </div>
                         ))}
-                        <button onClick={()=> finalizarCompra()} className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded self-start">
+                        <button onClick={() => finalizarCompra()} className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded self-start">
                             Finalizar Compra
                         </button>
                     </div>
                 ) : (
-                    <p className="text-gray-600 text-lg" >Seu carrinho está vazio 😕</p>
+                    <p className="text-gray-600 text-lg">Seu carrinho está vazio 😕</p>
                 )
             }
 
             {
-                pedidosRecentes.length > 0 && adm == 0 && (
+                pedidosRecentes.length > 0 && adm === 0 && (
                     <div className="mt-10 bg-green-100 p-6 rounded-lg shadow-md">
                         <h3 className="text-xl font-bold text-green-700 mb-2">Seus Pedidos:</h3>
                         {pedidosRecentes.map((item, i) => (
@@ -154,8 +143,6 @@ export default function Carrinho(){
                     </div>
                 )
             }
-
-            
         </div>
     )
 }
