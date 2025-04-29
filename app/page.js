@@ -96,7 +96,7 @@ export default function Home() {
 			<div className="flex flex-wrap items-center gap-4 mb-6">
 			<button 
     onClick={() => alteraMenuAberto(!menuAberto)} 
-    className="bg-green-200/30 hover:bg-green-300/40 text-green-800 px-6 py-3 rounded-lg font-semibold shadow-lg backdrop-blur-2xl border border-white/20 transition-all mt-8"
+    className="bg-green-200/30 hover:bg-green-300/40 text-green-800 px-6 py-3 rounded-lg font-semibold shadow-lg backdrop-blur-2xl border border-white/20 transition-all mt-10"
 >
     {menuAberto ? 'Esconder Categorias' : 'Selecionar Categoria'}
 			</button>
@@ -104,7 +104,7 @@ export default function Home() {
 	{menuAberto && (
    		 <button 
         onClick={() => alteraMostrando(produtos)} 
-        className="bg-green-200/30 hover:bg-green-300/40 text-green-800 px-6 py-3 rounded-lg font-semibold shadow-lg backdrop-blur-2xl border border-white/20 transition-all"
+        className="bg-green-200/30 hover:bg-green-300/40 text-green-800 px-6 py-3 rounded-lg font-semibold shadow-lg backdrop-blur-2xl border border-white/20 transition-all mt-10"
     >
         Mostrar Todos
    		 </button>
