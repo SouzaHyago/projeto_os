@@ -10,19 +10,21 @@ export default function Carrinho(){
     const [carrinho, alteraCarrinho] = useState([])
     const [ adm, alteraAdm ] = useState(0)
     const [pedidosRecentes, alteraPedidosRecentes] = useState([])
-    const [compraFinalizada, alteraCompraFinalizada] = useState(false)
-
+    
     function buscarCarrinho() {
         const response = JSON.parse(localStorage.getItem('usuario'))
-        if (response?.carrinho) {
+        if (response.carrinho) {
             alteraCarrinho(response.carrinho)
+        }
+        if(response.pedidos){
+            alteraPedidosRecentes(response.pedidos)
         }
     }
 
     async function finalizarCompra() {
 
         const local = JSON.parse(localStorage.getItem('usuario'))
-        const novosPedidos = [];
+        let novosPedidos = local.pedidos;
 
         for(let i = 0; i < carrinho.length;i++){
             console.log(carrinho[i])
@@ -39,21 +41,29 @@ export default function Carrinho(){
             console.log(obj)
 
             const response = await axios.post(host+"compras",obj)
+
             novosPedidos.push(carrinho[i])
             console.log(response)
+            
+            localStorage.setItem('usuario', JSON.stringify({
+                email: local.email,
+                adm: local.adm,
+                carrinho : [],
+                id : local.id,
+                pedidos: novosPedidos
+            }))
         }
+        
 
         localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
 			adm: local.adm,
 			carrinho : [],
-            id : local.id
-		
+            id : local.id,
+            pedidos: novosPedidos
 		}))
-        
+
         buscarCarrinho()
-        alteraPedidosRecentes(novosPedidos)
-        alteraCompraFinalizada(true)
     
     }
 
@@ -131,7 +141,7 @@ export default function Carrinho(){
             }
 
             {
-                compraFinalizada && pedidosRecentes.length > 0 && adm == 0 && (
+                pedidosRecentes.length > 0 && adm == 0 && (
                     <div className="mt-10 bg-green-100 p-6 rounded-lg shadow-md">
                         <h3 className="text-xl font-bold text-green-700 mb-2">Seus Pedidos:</h3>
                         {pedidosRecentes.map((item, i) => (
