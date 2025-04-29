@@ -134,8 +134,8 @@ export default function Carrinho(){
                 compraFinalizada && pedidosRecentes.length > 0 && adm == 0 && (
                     <div className="mt-10 bg-green-100 p-6 rounded-lg shadow-md">
                         <h3 className="text-xl font-bold text-green-700 mb-2">Seus Pedidos:</h3>
-                        {pedidosRecentes.map(() => (
-                            <div key={index} className="mb-4">
+                        {pedidosRecentes.map((item, i) => (
+                            <div className="mb-4" key={i}>
                                 <p className="text-green-900 font-medium">{item.nome}</p>
                                 <p className="text-green-800 text-sm">Quantidade: {item.qtd} • Valor: R$ {item.valor.toFixed(2)}</p>
                             </div>
