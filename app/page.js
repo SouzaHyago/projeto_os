@@ -17,7 +17,7 @@ export default function Home() {
 	const [adm, alteraAdm] = useState(0);
 	const [categoria, alteraCategoria] = useState("")
     const [nome, alteraNome] = useState("")
-    const [ imagem, alteraImagem ] = useState("")
+    const [imagem, alteraImagem] = useState("")
     const [descricao, alteraDescricao] = useState("")
     const [valor, alteraValor] = useState(0);
 	const [editar,alteraEditar] = useState(null);
@@ -32,9 +32,13 @@ export default function Home() {
 	}
 
 	async function buscarProdutos() {
-		const response = await axios.get(host + "itens");
-		alteraProdutos(response.data);
-		alteraMostrando(response.data)
+		try {
+			const response = await axios.get(host + "itens");
+			alteraProdutos(response.data);
+			alteraMostrando(response.data)
+		} catch (erro) {
+			console.error("Erro ao buscar produtos:", erro);
+		}
 	}
 
 	function adicionarNoCarrinho(item) {
@@ -58,7 +62,7 @@ export default function Home() {
 		if (quantidade < 1) {
 			item['qtd'] = 1;
 		}else{
-			item['qtd'] = parseInt( quantidade);
+			item['qtd'] = parseInt(quantidade);
 		}
 		localStorage.setItem('usuario', JSON.stringify({
 			email: local.email,
@@ -71,8 +75,12 @@ export default function Home() {
 	}
 
 	async function buscarCategorias() {
-		const response = await axios.get(host + "categorias");
-		alteracategorias(response.data);
+		try {
+			const response = await axios.get(host + "categorias");
+			alteracategorias(response.data);
+		} catch (erro) {
+			console.error("Erro ao buscar categorias:", erro);
+		}
 	}
 
 	function ItensPorCategoria(id) {
@@ -99,9 +107,14 @@ export default function Home() {
 	}
 
 	async function removerItem(id) {
-		await axios.delete(host + "itens/" + id)
-		buscarProdutos();
-		fecharModal();
+		try {
+			await axios.delete(host + "itens/" + id);
+			buscarProdutos();
+			fecharModal();
+		} catch (erro) {
+			console.error("Erro ao remover item:", erro);
+			alert("Ocorreu um erro ao remover o item.");
+		}
 	}
 
 	function formataValor(input){
@@ -130,17 +143,21 @@ export default function Home() {
 	}
 
 	async function editarItem() {
-
-		for(let i = 0; i < categorias.length; i++){
-			if(categorias[i].nome === categoria){
-				alteraCategoria(categorias[i].id)
+		try {
+			for(let i = 0; i < categorias.length; i++){
+				if(categorias[i].nome === categoria){
+					alteraCategoria(categorias[i].id)
+				}
 			}
+			
+			await axios.put(host+"itens/"+produtoSelecionado.id,{ nome: nome, imagem: imagem, descricao: descricao, valor: valor, id_categoria:categoria } );
+			alteraEditar(null);
+			setProdutoSelecionado(null);
+			buscarProdutos();
+		} catch (erro) {
+			console.error("Erro ao editar item:", erro);
+			alert("Ocorreu um erro ao editar o item.");
 		}
-		
-		await axios.put(host+"itens/"+produtoSelecionado.id,{ nome: nome, imagem: imagem, descricao: descricao, valor: valor, id_categoria:categoria } );
-		alteraEditar(null);
-		setProdutoSelecionado(null);
-		buscarProdutos();
 	}
 
 	useEffect(() => {
@@ -264,6 +281,7 @@ export default function Home() {
 								</button>
 
 								
+
 							</div>
 						)}
 					</div>
@@ -296,23 +314,34 @@ export default function Home() {
 
 								<label>Descrição<br />
 									<input required placeholder="Digite a descrição do produto" onChange={(e) => alteraDescricao(e.target.value)} value={descricao} />
-								</label> <br/>
-
-								<label>Valor<br />
-									<input required placeholder="0.00" inputMode='numeric' onChange={(e) => inputValor(e.target.value)} value={valor} />
 								</label>
 
-								<br/>
-
-								<button>Adicionar</button>
-
+								<label>Valor<br />
+									<input 
+										required 
+										placeholder="Digite o valor" 
+										onChange={(e) => inputValor(e.target.value)} 
+										value={valor} 
+									/>
+								</label>
+								<div className="flex justify-between gap-10 mt-5">
+									<button 
+										className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg"
+										type="reset"
+										onClick={() => alteraEditar(null)}
+									>Cancelar</button>
+									<button 
+										className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg"
+										type="submit"
+									>Salvar Alterações</button>
+								</div>
 							</form>
+
 						</div>
 					</div>
-					
 				)
 
 			}
 		</div>
-	);
+	)
 }
